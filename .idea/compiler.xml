@@ -25,7 +25,7 @@
         <module name="hulk" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="hulk" target="1.8" />
     </bytecodeTargetLevel>
   </component>
