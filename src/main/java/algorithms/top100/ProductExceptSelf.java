@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * Created by yangyuan on 2020/1/13.
- *
+ *238
  * 给定长度为 n 的整数数组 nums，其中 n > 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。
 
  示例:
@@ -20,6 +20,22 @@ public class ProductExceptSelf {
         int[] data = {1,2,3,4};
         System.out.println(JSON.toJSONString(productExceptSelf(data)));
     }
+
+    public static int[] productExceptSelfTimes2(int[] nums){
+        int k = 1;
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++){
+            result[i] = k;
+            k*=nums[i];
+        }
+        k = 1;
+        for (int i = nums.length - 1; i>= 0; i--){
+            result[i]*=k;
+            k*=nums[i];
+        }
+        return result;
+    }
+
 
     public static int[] productExceptSelf(int[] nums) {
         int[] result = new int[nums.length];

@@ -27,7 +27,7 @@ public class GenerateParenthesis {
 
     public static void main(String[] args) {
 
-        System.out.println(JSON.toJSONString(generateParenthesis(2)));
+        System.out.println(JSON.toJSONString(generateParenthesisTimes2(2)));
     }
 //
 //    public static List<String> generateParenthesis(int n) {
@@ -49,6 +49,24 @@ public class GenerateParenthesis {
 //    }
 
 
+    private static  List<String> generateParenthesisTimes2(int n){
+        List<String> result = new ArrayList<>();
+        generateResult(result, 0, 0, "", n);
+        return result;
+    }
+
+    private static void generateResult(List<String> result, int left, int right, String cur, int max){
+        if (cur.length() == 2*max){
+            result.add(cur);
+            return;
+        }
+        if (left < max){
+            generateResult(result, left + 1, right, cur + "(" , max);
+        }
+        if (right < left){
+            generateResult(result, left, right + 1, cur + ")", max);
+        }
+    }
 
 
     private static  List<String> generateParenthesis(int n){

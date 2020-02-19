@@ -10,7 +10,22 @@ public class MaxArea {
 
     public static void main(String[] args) {
         int[] array = new int[]{1,8,6,2,5,4,8,3,7};
-        System.out.println(maxArea(array));
+        System.out.println(maxAreaTimes2(array));
+    }
+
+    private static int maxAreaTimes2(int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+        int result = 0;
+        while (left < right){
+            result = Math.max(result, (right - left)*Math.min(array[left] , array[right]));
+            if (array[left] < array[right]){
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return result;
     }
 
     private static int maxArea(int[] array){

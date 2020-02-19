@@ -1,6 +1,5 @@
 package algorithms.top100;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -18,8 +17,8 @@ import java.util.Arrays;
 public class LengthOfLIS {
 
     public static void main(String[] args) {
-        int[] data = {4,5,12,1,1,2};
-        System.out.println(lengthOfLIS(data));
+        int[] data = {10,9,2,5,3,7,101,18,16,13,10};
+        System.out.println(lengthOfLISDynamic(data));
     }
 
 

@@ -8,6 +8,8 @@ import com.alibaba.fastjson.JSON;
  * <p>
  * 有n件物品，每件物品的重量为w[i]，价值为c[i]。现有一个容量为V的背包，问如何选取物品放入背包，使得背包内物品的总价值最大。其中
  * 每种物品都只有一件
+ *
+ * https://www.bilibili.com/video/av36136952?from=search&seid=9369792597036016364
  */
 public class Knapsack {
 
@@ -37,6 +39,7 @@ public class Knapsack {
         for (int i = 1; i < weight.length; i++) {
             for (int j = 0; j <= capacity; j++) {
                 if (j - weight[i] >= 0) {
+                    //前i个物品，容量j
                     dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);
                 } else {
                     dp[i][j] = dp[i - 1][j];

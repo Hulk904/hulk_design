@@ -1,5 +1,7 @@
 package algorithms.top100;
 
+import algorithms.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

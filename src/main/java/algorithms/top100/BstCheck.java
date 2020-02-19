@@ -1,5 +1,7 @@
 package algorithms.top100;
 
+import algorithms.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -23,7 +25,27 @@ public class BstCheck {
         TreeNode node1 = new TreeNode(3);
         root.right = node1;
         //System.out.println(isSymmetric(root));
-        System.out.println(isValidBST(root));
+        System.out.println(isValidBSTTimes2(root));
+    }
+
+    public static boolean isValidBSTTimes2(TreeNode root){
+        if(root == null){
+           return true;
+        }
+        long pre = Long.MIN_VALUE;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (!stack.isEmpty() || cur != null){
+            while (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            if (cur.val <= pre) return false;
+            pre = cur.val;
+            cur = cur.right;
+        }
+        return true;
     }
 
     /**

@@ -2,7 +2,9 @@ package algorithms.top100;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -12,12 +14,30 @@ import java.util.Set;
  *   存在的删除下标为i的元素 ，i++
  *   不存在的添加下标为j的元素 ，j++
  */
-public class MaxDiffString {
+public class LengthOfLongestSubstring {
 
     public static void main(String[] args) {
 
-        String str = "pwwke";
-        System.out.println(max(str));
+        String str = "abcada";
+        System.out.println(lengthOfLongestSubstring(str));
+    }
+
+    private static int lengthOfLongestSubstring(String str){
+        if (str == null || "".equals(str)){
+            return 0;
+        }
+        int left = 0;
+        int result = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int right = 0; right < str.length(); right++){
+            if (map.containsKey(str.charAt(right))){
+                // 需要Math.max 处理场景 abba
+                left = Math.max(left,map.get(str.charAt(right)) + 1);
+            }
+            result = Math.max(result, right - left + 1);
+            map.put(str.charAt(right), right);
+        }
+        return result;
     }
 
     private static int max(String str){

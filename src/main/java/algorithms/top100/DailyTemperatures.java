@@ -57,14 +57,14 @@ public class DailyTemperatures {
 
     /**
      * 相对于 n2的算法
-     * 从后往前计算。并且跳过重复的部分   时间比栈要快啊。。
+     * 从后往前计算。并且跳过重复的部分   时间甚至比栈要快啊。。
      * @param T
      * @return
      */
     public static int[] dailyTemperatures(int[] T) {
         int[] result = new int[T.length];
         for (int i = result.length - 2; i >= 0; i--){
-            for (int j = i + 1; j < result.length; j+=result[j]){//跳过重复计算的部分
+            for (int j = i + 1; j < result.length; j+=result[j]){//跳过重复计算的部分:利用已有的结果进行跳跃
                 if (T[i] < T[j]){
                     result[i] = j -i;
                     break;

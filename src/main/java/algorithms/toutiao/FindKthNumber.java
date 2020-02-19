@@ -21,7 +21,42 @@ package algorithms.toutiao;
 public class FindKthNumber {
 
     public static void main(String[] args) {
-        System.out.println(findKthNumber(681692778, 351251360));
+        //System.out.println(findKthNumber(681692778, 351251360));
+        System.out.println(findKthNumber2(10000,10000));
+    }
+
+    public static int findKthNumber2(int n, int k){
+        int prefix = 1;
+        int p = 1;
+        while (p < k){
+            int count = getCount2(prefix, n);
+            if (count + p > k){
+                prefix *= 10;
+                p++;
+            } else {
+                prefix++;
+                p+=count;
+            }
+        }
+        return prefix;
+    }
+
+    /**
+     * 以prefix为前缀小于 n 的 数个数
+     * @param prefix
+     * @param n
+     * @return
+     */
+    private static int getCount2(long prefix, int n){
+        int count = 0;
+        long cur = prefix;
+        long next = prefix + 1;
+        while (cur <= n){
+            count += Math.min(n + 1,next) - cur;
+            next *= 10;
+            cur *= 10;
+        }
+        return count;
     }
 
     public static int findKthNumber(int n, int k) {
@@ -43,7 +78,7 @@ public class FindKthNumber {
     }
 
     /** 确定一个前缀下所有子节点的个数
-     * 以prefix为前缀的数 ，和n之间有几个数
+     * 以prefix为前缀的数 ，在n之前有几个数
      * @param prefix
      * @param n
      * @return

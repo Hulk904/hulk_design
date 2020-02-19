@@ -7,8 +7,59 @@ package algorithms.top100;
  */
 public class LongestPalindrom {
     public static void main(String[] args) {
-        String str = "";
-        System.out.println(solution(str));
+        String str = "bb";
+        System.out.println(longestPalindrome(str));
+    }
+
+    /**
+     * 逻辑跟下面的类似，但是写的比较啰嗦
+     *   （n-1）/2 和 n/2 奇数的时候相同，偶数的时候差1
+     *   所以 可以更简洁的表达
+     *   if (temp > end - start){
+            start = i - (temp-1)/2;
+            end = i + temp/2 ;
+         }
+     * @param s
+     * @return
+     */
+    public static String longestPalindrome(String s){
+        if (s == null || "".equals(s)){
+            return "";
+        }
+        int max = 0;
+        int left = 0, right = 0;
+        for (int i = 0; i< s.length(); i++){
+            int one = distance(s, i, i);
+            int oneDistance = 2*one - 1;
+            if (oneDistance > max){
+                max = oneDistance;
+                left = i - (one - 1);
+                right = i + (one - 1);
+            }
+            int two = distance(s, i, i + 1);
+            int twoDistance = 2*two;
+            if (twoDistance > max){
+                max = twoDistance;
+                left = i - (two - 1);
+                right = i + (two - 1) + 1;
+            }
+        }
+        return s.substring(left, right + 1);
+    }
+
+    private static int distance(String s, int left, int right){
+        if (right >= s.length()){
+            return 0;
+        }
+        int max = 0;
+        while (left >= 0
+                && right < s.length()
+                && s.charAt(left) == s.charAt(right)){
+            max++;
+            left--;
+            right++;
+        }
+        return max;
     }
 
     public static String solution(String str){

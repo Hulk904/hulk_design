@@ -1,5 +1,6 @@
 package algorithms.top100;
 
+import algorithms.TreeNode;
 import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
@@ -140,37 +141,3 @@ public class InorderTraversal {
 
     }
 }
-
- class TreeNode {
-     int val;
-     TreeNode left;
-     TreeNode right;
-
-     public int getVal() {
-         return val;
-     }
-
-     public void setVal(int val) {
-         this.val = val;
-     }
-
-     public TreeNode getLeft() {
-         return left;
-     }
-
-     public void setLeft(TreeNode left) {
-         this.left = left;
-     }
-
-     public TreeNode getRight() {
-         return right;
-     }
-
-     public void setRight(TreeNode right) {
-         this.right = right;
-     }
-
-     TreeNode(int x) {
-         val = x;
-     }
- }

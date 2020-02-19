@@ -1,5 +1,6 @@
 package algorithms.top100;
 
+import algorithms.TreeNode;
 import com.alibaba.fastjson.JSON;
 
 import java.util.*;
@@ -97,5 +98,23 @@ public class LowestCommonAncestor {
             target = cur;
         }
         return left + right + mid >=1;
+    }
+
+
+    /**
+     * 简洁的思路 覃超 视频里的
+     * 思路： 在左树里面找是否存在p、q节点。在右子树是否存在pq节点
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode lowestCommonAncestorRecurse2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q){
+            return root;
+        }
+        TreeNode left = lowestCommonAncestorRecurse2(root.left, p, q);
+        TreeNode right = lowestCommonAncestorRecurse2(root.right, p, q);
+        return left == null ? right : right == null ? left : root;
     }
 }

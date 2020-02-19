@@ -1,5 +1,7 @@
 package algorithms.top100;
 
+import algorithms.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,16 +27,23 @@ public class TreeUtil {
                     TreeNode left = new TreeNode(data[i]);
                     cur.left = left;
                     queue.add(left);
+                    i++;
+                } else {
+                    queue.add(null);
+                    i++;
                 }
-                i++;
             }
             if (i < data.length ) {
                 if (data[i] != null) {
                     TreeNode right = new TreeNode(data[i]);
                     cur.right = right;
                     queue.add(right);
+                    i++;
+                } else {
+                    queue.add(null);
+                    i++;
                 }
-                i++;
+
             }
         }
         return root;

@@ -18,12 +18,27 @@ public class SubSets {
     public static void main(String[] args) {
 
         int[] arr= {1,2,3};
-        System.out.println(JSON.toJSONString(subsets(arr)));
+        System.out.println(JSON.toJSONString(subsetsTimes2(arr)));
 
+    }
+
+    private static List<List<Integer>> subsetsTimes2(int[] nums){
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
+        for (int i = 0; i < nums.length; i++){
+            int size = result.size();
+            for (int j = 0; j < size; j++){
+                List<Integer> temp = new ArrayList<>(result.get(j));
+                temp.add(nums[i]);
+                result.add(temp);
+            }
+        }
+        return result;
     }
 
     /**
      * 循环枚举  1，2，3 ===>  [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+     * 遍历元素，然后往现有集合中添加当前元素
      * @param nums
      * @return
      */

@@ -1,5 +1,7 @@
 package algorithms.top100;
 
+import algorithms.TreeNode;
+
 /**
  * Created by yangyuan on 2020/1/26.
  *
@@ -23,10 +25,25 @@ public class MaxPathSum {
     private int maxSum = Integer.MIN_VALUE;
 
     public static void main(String[] args) {
-        Integer[] data = {13, -2, 12,null, null, 14, 15};
+        Integer[] data = {14,null,11,null,null,15,15};
         TreeNode treeNode = TreeUtil.buildTree(data);
-        System.out.println(new MaxPathSum().maxPathSum(treeNode));
+        System.out.println(new MaxPathSum().maxPathSumTimes2(treeNode));
 
+    }
+
+    public  int maxPathSumTimes2(TreeNode root) {
+        System.out.println(maxSum2(root));
+        return maxSum;
+    }
+
+    public  int maxSum2(TreeNode treeNode){
+        if (treeNode == null){
+            return 0;
+        }
+        int leftSum = Math.max(maxSum2(treeNode.left), 0);//注意 不要直接返回 maxSum2(treeNode.left) 了 ，负数就必要算上了
+        int rightSum = Math.max(maxSum2(treeNode.right), 0);
+        maxSum = Math.max(maxSum, leftSum + rightSum + treeNode.val);
+        return Math.max(leftSum + treeNode.val, rightSum + treeNode.val);
     }
 
     public int maxPathSum(TreeNode root) {
