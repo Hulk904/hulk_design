@@ -87,12 +87,14 @@ public class LongestValidParentheses {
         }
         int left = 0 ,right = 0;
         int result = 0;
+        //从左往右计算
         for (int i = 0; i < s.length(); i++){
             if (s.charAt(i) == '('){
                 left++;
             } else {
                 right++;
             }
+            //如果出现不合法的重置为0 重新统计
             if (left == right){
                 result = Math.max(result, left*2);
             } else if (right > left){
@@ -100,8 +102,14 @@ public class LongestValidParentheses {
                 right = 0;
             }
         }
+        /*
+        为什么还有反着做一遍？
+        比如（（（（））
+        像这样的情况上面是统计不到的结果
+         */
         left = 0;
         right = 0;
+        //从右往左计算
         for (int i = s.length() - 1; i >= 0 ; i--){
             if (s.charAt(i) == '('){
                 left++;

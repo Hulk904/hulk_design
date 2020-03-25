@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-/**
+ /**
+  * 39. 组合总和
  * 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
 
  candidates 中的数字可以无限制重复被选取。
@@ -20,8 +21,10 @@ public class CombinationSum {
 
 
     public static void main(String[] args) {
-        int[] array = {3,2,6,7};
-        System.out.println(JSON.toJSONString(combinationSum(array, 7)));
+        int[] array = {8,7,3,4};
+        //System.out.println(JSON.toJSONString(combinationSum(array, 11)));
+        CombinationSum c = new CombinationSum();
+        c.combinationSum2(array,11);
     }
 
     private static List<List<Integer>>   combinationSum(int[] candidates, int target) {
@@ -42,8 +45,45 @@ public class CombinationSum {
         }
         for (int i = start; i < array.length && reside - array[i] >= 0 ; i++){
             stack.push(array[i]);
-            doSum(reside - array[i], i, stack, array, result);//递归 传的是 i 而不是 i+1
+            doSum(reside - array[i], i, stack, array, result);//递归 传的是 i 而不是 i+1  因为数字可以使用多次
             stack.pop();
         }
     }
+
+     List<List<Integer>> res = new ArrayList();
+
+     /**
+      * 这个方法跟方法一相比 对数组并没有排序
+      * 整体看起来没啥区别，唯一的区别就是 方法1 for循环上面多了个剪枝处理 reside - array[i] >= 0
+      * 而方法二不能这么加。因为这是for的工作原理决定的。因为一旦有个条件不满足了就不会走后序的
+      * 可以加在for体里
+      * @param candidates
+      * @param target
+      * @return
+      */
+     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+         dfs(candidates, 0, new Stack(), target);
+         return res;
+     }
+
+     void dfs(int[] candidates, int start,Stack<Integer> item, int reside){
+         if (reside == 0){
+             res.add(new ArrayList(item));
+             return;
+         }
+         //加了后面的那块这个也没用了
+         if (reside < 0){
+             return;
+         }
+         for (int i = start; i < candidates.length ; i++){
+             //这个剪枝是后来加的，跟方法一可以不一样
+             if (reside - candidates[i] < 0){
+                 continue;
+             }
+             item.push(candidates[i]);
+             System.out.println(item.toString());
+             dfs(candidates, i, item, reside - candidates[i]);
+             item.pop();
+         }
+     }
 }

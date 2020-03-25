@@ -73,6 +73,7 @@ public class MirrorTree {
         if (left.val != right.val) {
             return false;
         }
+        //注意这里的比较对象 不是 （left.left,left.right）和 (right.left,right.right);
         return isMirror(left.left, right.right) && isMirror(left.right, right.left);
     }
 

@@ -49,12 +49,13 @@ public class FindDuplicate {
 
     /**
      * 二分法实现
-     * 关键：这道题的关键是对要定位的“数”做二分，而不是对数组的索引做二分。要定位的“数”根据题意在 11 和 nn 之间，每一次二分都可以将搜索区间缩小一半。
+     * 关键：这道题的关键是对要定位的“数”做二分，而不是对数组的索引做二分。
+     * 要定位的“数”根据题意在 1 和 n 之间，每一次二分都可以将搜索区间缩小一半。
      * @param nums
      * @return
      */
     public static int findDuplicateB(int[] nums) {
-        int left = 0;
+        int left = 1;
         int right = nums.length;
         while (left < right){
             int mid = (left + right)/2;
@@ -70,6 +71,6 @@ public class FindDuplicate {
                 left = mid + 1;
             }
         }
-        return left;
+        return left;//返回的是left 而不是 nums[]
     }
 }

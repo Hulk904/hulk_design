@@ -21,7 +21,7 @@ public class MinDepth {
         if (root == null) {
             return 0;
         }
-        //左子树为空或者右子树为空，不代表就可以推出了，而是继续计算另一分支，仔细品品。。。
+        //左子树为空或者右子树为空，不代表就可以退出了，而是继续计算另一分支，仔细品品。。。
         int left = minDepth(root.left);
         int right = minDepth(root.right);
         return left == 0 || right == 0 ? left + right + 1 : Math.min(left, right) + 1;

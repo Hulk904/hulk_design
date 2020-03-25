@@ -6,17 +6,25 @@ import java.util.List;
 
 /**
  * Created by yangyuan on 2020/1/17.
+ *
+ * 448. 找到所有数组中消失的数字
+ *
+ * 给定一个范围在  1 ≤ a[i] ≤ n ( n = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。
+
+ 找到所有在 [1, n] 范围之间没有出现在数组中的数字。
+
  */
 public class FindDisappearedNumbers {
 
     public static void main(String[] args) {
         int[] data = {4,3,2,7,8,2,3,1};
-        System.out.println(findDisappearedNumbers2(data));
+        System.out.println(findDisappearedNumbers(data));
     }
 
     /**
      * 如果数据存在，则设置这个数字代表索引的地方累加数组长度 （当前位置的数据也不会被覆盖）
      * 然后再次遍历，元素值小于数组长度的表示未出现过
+     * 另一种方式就是 * -1  和这种方式差不多
      */
     public static List<Integer> findDisappearedNumbers(int[] nums) {
         if (nums == null || nums.length == 1){

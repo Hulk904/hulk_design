@@ -18,7 +18,7 @@ public class LengthOfLongestSubstring {
 
     public static void main(String[] args) {
 
-        String str = "abcada";
+        String str = "abba";
         System.out.println(lengthOfLongestSubstring(str));
     }
 
@@ -48,7 +48,7 @@ public class LengthOfLongestSubstring {
         Set<Character> set = new HashSet<Character>();
         while (j < str.length()){
             if (set.contains(str.charAt(j))){
-                set.remove(str.charAt(i ++));//注意删除的是 i 下标的元素
+                set.remove(str.charAt(i ++));//注意删除的是 i 下标的元素,这个时候j没有++
             }else {
                 r = Math.max(r, j - i  + 1);
                 set.add(str.charAt( j++));

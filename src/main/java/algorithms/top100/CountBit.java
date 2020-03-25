@@ -4,14 +4,14 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * Created by yangyuan on 2020/1/15.
- *
+ *338
  * 给定一个非负整数 num。对于 0 ≤ i ≤ num 范围中的每个数字 i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
 
  示例 1:
 
  输入: 2
  输出: [0,1,1]
-
+ 动态规划
  */
 public class CountBit {
 

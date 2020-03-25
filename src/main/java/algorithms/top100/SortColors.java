@@ -24,7 +24,7 @@ public class SortColors {
     }
 
     public static void sortColors(int[] nums){
-        int p0 = 0, cur = 0,  p2 = nums.length -1;
+        int p0 = 0 /*0的下一个位置*/, cur = 0,  p2 = nums.length -1/*2的前一个位置*/;
         while (cur <= p2 ){
            if (nums[cur] == 0){
                swap(nums, p0, cur);

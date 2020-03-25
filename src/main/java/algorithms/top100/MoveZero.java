@@ -29,6 +29,12 @@ public class MoveZero {
         int a = 0;
         for (int cur = 0; cur < nums.length; cur++){
             if (nums[cur] != 0){
+                /*
+                必须是交换不能写成：
+                 nums[a] = nums[i];
+                 nums[i] = 0;
+                 a++;
+                 */
                 swap(nums, a++, cur);
             }
         }

@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /**
  * Created by yangyuan on 2020/1/5.
- *
+ *98. 验证二叉搜索树
  * 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
 
  假设一个二叉搜索树具有如下特征：
@@ -16,7 +16,7 @@ import java.util.Stack;
  所有左子树和右子树自身必须也是二叉搜索树。
 
  */
-public class BstCheck {
+public class ValidBST {
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(2);
@@ -49,7 +49,7 @@ public class BstCheck {
     }
 
     /**
-     * 主体中序遍历
+     * 主体中序遍历  记录前序节点 并与之比较
      * @param root
      * @return
      */

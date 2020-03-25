@@ -4,13 +4,17 @@ import java.util.Stack;
 
 /**
  * Created by yangyuan on 2020/1/20.
+ * 581. 最短无序连续子数组
+ * 给定一个整数数组，你需要寻找一个连续的子数组，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。
+
+ 你找到的子数组应是最短的，请输出它的长度。
  */
 public class FindUnsortedSubarray {
 
     public static void main(String[] args) {
-        //int[] data = {1,3,2,3,3};
-        int[] data = {1,2,3,4};
-        System.out.println(findUnsortedSubarray2(data));
+        //int[] data =
+        int[] data = {1,3,2,2,2};
+        System.out.println(findUnsortedSubarray(data));
     }
 
     public static int findUnsortedSubarray(int[] nums){
@@ -24,14 +28,14 @@ public class FindUnsortedSubarray {
                 start = Math.min(start, stack.pop());
             }
             stack.push(i);
-        }
+        }//stack 剩余元素递增的 1，2，2，2 start = 1
         stack.clear();
         for (int i = nums.length - 1; i >=0; i--){
             while (!stack.isEmpty() && nums[i] > nums[stack.peek()]){
                 end = Math.max(end, stack.pop());
             }
             stack.push(i);
-        }
+        }//剩下3、1  end = 4
         return start>end ? 0 : end - start + 1;
     }
 

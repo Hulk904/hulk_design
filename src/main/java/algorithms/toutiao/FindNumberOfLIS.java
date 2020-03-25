@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by yangyuan on 2020/2/17.
- *
+ *673. 最长递增子序列的个数
  * 给定一个未排序的整数数组，找到最长递增子序列的个数。  注意这里要求的LIS的个数哦  与300不同
 
  示例 1:
@@ -42,7 +42,7 @@ public class FindNumberOfLIS {
         }
         int count = 0;
         for (int i = 0; i < dp.length; i++){
-            if ( dp[i] == result){
+            if ( dp[i] == result){//可能有多个长度一样的，所以不能找到一个就返回了
                 count+=length[i];
             }
         }

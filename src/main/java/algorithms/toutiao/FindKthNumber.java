@@ -2,6 +2,7 @@ package algorithms.toutiao;
 
 /**
  * Created by yangyuan on 2020/1/29.
+ * 440. 字典序的第K小数字
  * 给定整数 n 和 k，找到 1 到 n 中字典序第 k 小的数字。
 
  注意：1 ≤ k ≤ n ≤ 109。
@@ -22,7 +23,8 @@ public class FindKthNumber {
 
     public static void main(String[] args) {
         //System.out.println(findKthNumber(681692778, 351251360));
-        System.out.println(findKthNumber2(10000,10000));
+        //System.out.println(findKthNumber2(10000,10000));
+        getCount(1,120);
     }
 
     public static int findKthNumber2(int n, int k){
@@ -60,8 +62,8 @@ public class FindKthNumber {
     }
 
     public static int findKthNumber(int n, int k) {
-        int p = 1;
-        int prefix = 1;
+        int p = 1;//累计数
+        int prefix = 1;//前缀  ，也是最后返回结果
         while (p < k){
             int count = getCount(prefix, n);
             //第k个数在当前前缀下

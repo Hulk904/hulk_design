@@ -28,9 +28,9 @@ import java.util.List;
 public class FindAnagrams {
 
     public static void main(String[] args) {
-        String s = "ababababab";
-        String p = "aab";
-        System.out.println(JSON.toJSONString(findAnagrams(s, p)));
+        String s = "abaacbabc";
+        String p = "abc";
+        System.out.println(JSON.toJSONString(findAnagramsTest(s, p)));
 
     }
 
@@ -75,5 +75,46 @@ public class FindAnagrams {
             right++;
         }
         return result;
+    }
+
+    /**
+     * 错误的计算方式
+     * @param s
+     * @param p
+     * @return
+     */
+    public static List<Integer> findAnagramsTest(String s, String p) {
+        int[] needs = new int[26];
+        for (int i = 0; i < p.length(); i++){
+            needs[p.charAt(i) - 'a']++;
+        }
+        int total = p.length();
+        int left =0 ,right = 0;
+        int[] windows = new int[26];
+        List<Integer> res = new ArrayList();
+        while (right < s.length()){
+            char c = s.charAt(right);
+            if (needs[c - 'a'] > 0){
+                windows[c - 'a']++;
+                if (windows[c - 'a'] <= needs[c - 'a']){
+                    total--;
+                }
+            }
+            right++;
+            while(total == 0){
+                char t = s.charAt(left);
+                if (needs[t - 'a'] > 0){
+                    windows[t - 'a']--;
+                    if (windows[t - 'a'] < needs[t - 'a']){
+                        total++;
+                        //"abaacbabc"  "abc" 会返回 1，3，4，6
+                        //这里的问题是虽然b 虽然减少到极值了，但是不保证别的元素刚刚好了，所以放在这里不对
+                        res.add(left);
+                    }
+                }
+                left++;
+            }
+        }
+        return res;
     }
 }

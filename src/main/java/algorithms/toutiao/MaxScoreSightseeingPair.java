@@ -2,6 +2,7 @@ package algorithms.toutiao;
 
 /**
  * Created by yangyuan on 2020/2/10.
+ * 1014. 最佳观光组合
  *
  * 给定正整数数组 A，A[i] 表示第 i 个观光景点的评分，并且两个景点 i 和 j 之间的距离为 j - i。
 
@@ -16,6 +17,8 @@ package algorithms.toutiao;
  输入：[8,1,5,2,6]
  输出：11
  解释：i = 0, j = 2, A[i] + A[j] + i - j = 8 + 5 + 0 - 2 = 11
+
+ https://leetcode-cn.com/problems/best-sightseeing-pair/solution/python-jie-fa-by-jiayangwu/
 
  */
 public class MaxScoreSightseeingPair {

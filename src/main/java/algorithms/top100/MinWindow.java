@@ -2,9 +2,18 @@ package algorithms.top100;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by yangyuan on 2020/1/3.
+ * 76. 最小覆盖子串
+ * 给你一个字符串 S、一个字符串 T，请在字符串 S 里面找出：包含 T 所有字母的最小子串。
+
+ 示例：
+
+ 输入: S = "ADOBECODEBANC", T = "ABC"
+ 输出: "BANC"
+
  */
 public class MinWindow {
 
@@ -26,71 +35,40 @@ public class MinWindow {
     private static String minWindow(String s, String t) {
         int left =0, right = 0;
         int minLength = Integer.MAX_VALUE;
-        String target = "";
-        if (!stringContain(s, t)){
-            return "";
+        int start = 0;
+        Map<Character, Integer> needs = new HashMap<>();
+        for (char c:t.toCharArray()){
+            needs.put(c, needs.getOrDefault(c, 0) + 1);
         }
-        Map<Character,Integer> targetMap  = targetMap(t);
-        while (left < s.length() || right < s.length()){
-            if (right > s.length()){
-                right = s.length();
-                left++;
-            }
-            if (stringContain(s.substring(left, right), targetMap)){
-                if (right - left < minLength){
-                    minLength = right - left;
-                    target = s.substring(left, right);
+        Map<Character, Integer> windows = new HashMap<>();
+        int match = 0;
+        while (right < s.length()){
+            char c = s.charAt(right);
+            if (needs.get(c) != null && needs.get(c) > 0){
+                windows.put(c, windows.getOrDefault(c, 0) + 1);
+                if (Objects.equals(windows.get(c), needs.get(c))){
+                    match ++;
                 }
-                while (stringContain(s.substring(++left, right), targetMap)){
-                    if (right - left < minLength){
-                        minLength = Math.min(minLength, right - left);
-                        target = s.substring(left, right);
+            }
+            right++;
+            while (match == needs.size()){
+                minLength = Math.min(minLength, right - left);
+                if (minLength == right -left){
+                    start = left;
+                }
+                char l = s.charAt(left);
+                if (needs.get(l) != null && needs.get(l) > 0){
+                    windows.put(l, windows.get(l) - 1);
+                    if (windows.get(l) < needs.get(l)){
+                        match--;
                     }
                 }
-            } else {
-                right++;
+                left++;
             }
+
         }
-        return target;
+        return minLength == Integer.MAX_VALUE ? "" : s.substring(start, start + minLength);
     }
 
-    private static boolean stringContain (Map<Character, Integer> source, Map<Character, Integer> target){
-        for (Map.Entry<Character, Integer> entry:target.entrySet()){
-            if (source.get(entry.getKey()) == null || entry.getValue() > source.get(entry.getKey())){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static Map<Character, Integer> targetMap (String target){
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < target.length(); i++){
-            int count = map.getOrDefault(target.charAt(i), 0);
-            map.put(target.charAt(i), count + 1);
-        }
-        return map;
-    }
-
-    private static boolean stringContain (String ori, Map<Character, Integer> target){
-        Map<Character, Integer> sour = targetMap(ori);
-        for (Map.Entry<Character, Integer> entry:target.entrySet()){
-            if (sour.get(entry.getKey()) == null || entry.getValue() > sour.get(entry.getKey())){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static boolean stringContain(String ori, String target){
-        for (int i = 0; i < target.length(); i++){
-            if (!ori.contains(target.substring(i, i+1))){
-                return false;
-            } else {
-                ori = ori.replaceFirst(target.substring(i, i+1), "");
-            }
-        }
-        return true;
-    }
 }
 

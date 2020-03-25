@@ -2,7 +2,7 @@ package algorithms.toutiao;
 
 /**
  * Created by yangyuan on 2020/2/9.
- *
+ *91. 解码方法
  * 一条包含字母 A-Z 的消息通过以下方式进行了编码：
 
  'A' -> 1
@@ -14,8 +14,36 @@ package algorithms.toutiao;
  */
 public class NumDecodings {
     public static void main(String[] args) {
-        System.out.println(numDecodings("10"));
+        System.out.println(numDecodingsb("1"));
     }
+
+    /**
+     * 一种比较简洁的写法
+     * @param s
+     * @return
+     */
+    public static int numDecodingsb(String s) {
+        //前面补一个空格避免处理一些边界情况
+        s = " " + s;
+        int[] dp = new int[s.length()];
+        dp[0] = 1;
+
+        for (int i = 1; i < s.length(); i++){
+            dp[i] = 0;
+            if (s.charAt(i) != '0'){
+                dp[i] = dp[i - 1];
+            }
+            //可以和前面合成的，继续累加
+            if (i > 1){
+                int t = (s.charAt(i-1) - '0')*10 + s.charAt(i) - '0';
+                if (t >= 10 && t <= 26){
+                    dp[i] += dp[i - 2];
+                }
+            }
+        }
+        return dp[s.length() - 1];
+    }
+
 
     public static int numDecodings(String s) {
         if (s == null || s.length() == 0){
@@ -59,7 +87,6 @@ public class NumDecodings {
                     dp[i] = 1;
                 }
             }
-
         }
         return dp[s.length() - 1];
     }

@@ -3,7 +3,9 @@ package algorithms.top100;
 import algorithms.TreeNode;
 import com.alibaba.fastjson.JSON;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -89,15 +91,15 @@ public class PathSum {
      * @param sum
      * @return
      */
-    public  static int rootPathSum(TreeNode root, int sum) {
+    public  static int rootPathSumError(TreeNode root, int sum) {
         if (root == null){
             return 0;
         }
         if (root.val == sum){
             return 1;
         }
-        return rootPathSum(root.left, sum - root.val) +
-                rootPathSum(root.right, sum - root.val);
+        return rootPathSumError(root.left, sum - root.val) +
+                rootPathSumError(root.right, sum - root.val);
     }
 
     /**
@@ -118,4 +120,42 @@ public class PathSum {
           res += rootPathSumSuccess(root.right, sum - root.val);
         return  res;
     }
+
+    //https://leetcode-cn.com/problems/path-sum-iii/solution/liang-chong-fang-fa-jian-dan-yi-dong-ban-ben-by-a3/
+
+    /**
+     * 回溯 利用hashmap剪枝
+     * @param root
+     * @param sum
+     * @return
+     */
+    public  int pathSum2(TreeNode root, int sum){
+        if (root == null) return 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);//别漏了
+        return cal(root, map, sum, 0);
+    }
+
+    /**
+     *
+     * @param node
+     * @param map
+     * @param sum
+     * @param pathSum 记录的是前序遍历中所有走过节点的和
+     * @return
+     */
+    public int cal(TreeNode node, Map<Integer, Integer> map, int sum, int pathSum){
+        if (node == null){
+            return 0;
+        }
+        pathSum += node.val;
+        int res = map.getOrDefault(pathSum - sum, 0);
+        map.put(pathSum, map.getOrDefault(pathSum, 0) + 1);
+        int left = cal(node.left, map, sum, pathSum);
+        int right = cal(node.right, map, sum, pathSum);
+        map.put(pathSum, map.get(pathSum) - 1);//map全局变量， 最后需要回溯
+        return res + left + right;
+    }
+
+
 }

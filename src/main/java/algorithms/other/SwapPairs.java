@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * Created by yangyuan on 2020/2/11.
+ * 24. 两两交换链表中的节点
  * 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
 
  你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
@@ -59,5 +60,25 @@ public class SwapPairs {
             cur = previous.next;
         }
         return head;
+    }
+
+    /**
+     * 思路清晰后，步骤简洁多了
+     * @param head
+     * @return
+     */
+    public static  ListNode swapPairs2(ListNode head){
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        for (ListNode p = dummy; p.next != null && p.next.next != null;){
+            ListNode a = p.next, b = p.next.next;
+            //指针指向变化 ，下面ab的值都没有变化哦
+            //从左到右改变指向
+            p.next = b; //第一步
+            a.next = b.next;// 第二步
+            b.next = a;//第三步
+            p = a;//第四步
+        }
+        return dummy.next;
     }
 }

@@ -11,6 +11,7 @@ import java.util.Map;
 
  输入:nums = [1,1,1], k = 2
  输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。
+ 跟两数之和和四数之和差不多，使用hashmap来实现
 
  */
 public class SubarraySum {
@@ -21,18 +22,17 @@ public class SubarraySum {
     }
 
     public static int subarraySumMap2(int[] nums, int k){
-        int total =0 ;
-        Map<Integer, Integer> map = new HashMap<>();
-        int sum = 0;
+        Map<Integer, Integer> map = new HashMap();
         map.put(0, 1);
-        for (int i = 0; i < nums.length; i++){
+        int sum = 0;
+        int count = 0;
+        for(int i = 0; i < nums.length; i++){
             sum += nums[i];
-            if (map.containsKey(sum - k)){
-                total += map.get(sum - k);
-            }
+            Integer t = map.get(sum - k);
             map.put(sum, map.getOrDefault(sum, 0) + 1);
+            count = t == null ? count : count + t;
         }
-        return total;
+        return count;
     }
 
 

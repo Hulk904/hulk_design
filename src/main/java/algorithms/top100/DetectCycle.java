@@ -35,4 +35,29 @@ public class DetectCycle {
         }
         return cur;
     }
+
+    public static ListNode detectCycle2(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode fast = head, slow = head;
+        while (fast != null){
+            slow = slow.next;
+            fast = fast.next;
+            if (fast != null){
+                fast = fast.next;
+            } else {
+                return null;
+            }
+            if (fast == slow){
+                slow = head;
+                while (fast != slow){
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+                return fast;
+            }
+        }
+        return null;
+    }
 }

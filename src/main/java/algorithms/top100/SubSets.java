@@ -8,6 +8,7 @@ import java.util.Stack;
 
 /**
  * Created by yangyuan on 2020/1/3.
+ * 78 子集
  *
  * 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
 
@@ -18,7 +19,7 @@ public class SubSets {
     public static void main(String[] args) {
 
         int[] arr= {1,2,3};
-        System.out.println(JSON.toJSONString(subsetsTimes2(arr)));
+        System.out.println(JSON.toJSONString(subsets2(arr)));
 
     }
 
@@ -59,7 +60,7 @@ public class SubSets {
 
     /**
      * 递归  1，2，3 ===>  [[],[1],[1,2],[1,2,3],[1,3],[2],[2,3],[3]]
-     * @param nums
+     * @param nums  每个位置放哪个元素
      * @return
      */
     private static List<List<Integer>> subsets2(int[] nums) {
@@ -69,13 +70,59 @@ public class SubSets {
     }
 
 
-    private static void sub(int[] nums, List<List<Integer>> result, Stack<Integer> cur ,int i){
+    private static void sub(int[] nums, List<List<Integer>> result, Stack<Integer> cur, int i){
         result.add(new ArrayList<>(cur));
         for (int j = i; j< nums.length; j++) {
             cur.push(nums[j]);
             sub(nums, result, cur, j + 1);
             cur.pop();
         }
+        //result.add(new ArrayList<>(cur)); 后序遍历输出结果 [[1,2,3],[1,2],[1,3],[1],[2,3],[2],[3],[]]
+    }
+
+    /**
+     * 另一种回溯实现 ： 站在元素角度 选和不选
+     * @param nums
+     * @return
+     */
+    private static List<List<Integer>> subsets4(int[] nums) {
+        if (nums.length == 0) return new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
+        dfs(nums, nums.length, result, new Stack<Integer>(),0);
+        return result;
+    }
+
+    private static void dfs(int[] nums, int length, List<List<Integer>> result, Stack<Integer> path, int index){
+        if (index == nums.length){
+            result.add(new ArrayList<>(path));
+            return;
+        }
+        /**
+         * 每一个元素有选和不选两种选择  元素放在哪个位置
+         */
+        dfs(nums, length, result, path, index + 1);
+        path.push(nums[index]);
+        dfs(nums,length, result, path, index + 1);
+        path.pop();
+    }
+
+    /**
+     * 通过位操作实现
+     * @param nums
+     * @return
+     */
+    private static List<List<Integer>> subsets3(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i <= ((1<<nums.length) - 1); i++){
+            List<Integer> item = new ArrayList<>();
+            for (int j = 0; i >> j > 0; j++){
+                if ((i >> j & 1 )== 1){
+                    item.add(nums[j]);
+                }
+            }
+            result.add(item);
+        }
+        return result;
     }
 
 }

@@ -63,7 +63,6 @@ public class MaximalRectangle {
                     nextLeft = j + 1;
                 }
             }
-            System.out.println(JSON.toJSONString(left));
             //right
             for (int j = n - 1; j >= 0; j--){
                 if (matrix[i][j] == '1'){

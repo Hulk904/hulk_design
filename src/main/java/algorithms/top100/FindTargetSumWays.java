@@ -32,9 +32,9 @@ public class FindTargetSumWays {
         if ((sum -S)%2 == 1 || S > sum){//不可能有结果
             return 0;
         }
-        int target = (sum -S)/2;
+        int target = (sum -S)/2;//  写成(sum + S) / 2; 更好理解 。 可能开的空间比较大些
         int[] dp = new int[target + 1];
-        dp[0] = 1;
+
 //        for (int i = 0; i <= target; i++){  //为什么这种遍历方式不行 ？ 跟dp[0] = 1的初始化值有关？？？
 //            for (int j = nums.length - 1; j >= 0; j--){
 //                if (i - nums[j] >= 0) {
@@ -43,15 +43,45 @@ public class FindTargetSumWays {
 //
 //            }
 //        }
+        //跟完全背包问题不同的一点是它要求完全装满，所以dp[0]要特殊初始化
+        dp[0] = 1;
         for (int num:nums){
             for (int i = target; i >= num; i--){
+                //目标都是target所以是累加计算。。。
                 dp[i] += dp[i -num];
             }
         }
         return dp[target];
     }
 
+    /**
+     * 转换为求目标和，回溯的性能比上面慢不少。。
+     * @param nums
+     * @param S
+     * @return
+     */
+    public int findTargetSumWays2(int[] nums, int S){
+        int totalSum = 0;
+        for (int i = 0; i < nums.length; i++){
+            totalSum+=nums[i];
+        }
+        if (((totalSum + S)&1) == 1) return 0;
+        dfs(nums, 0, totalSum + S >> 1);
+        return count;
+    }
 
+    void dfs(int[] nums, int index, int reside){
+        if (reside < 0){
+            return;
+        }
+        if (reside == 0){
+            count++;
+            //return;
+        }
+        for(int i = index; i < nums.length; i++){
+            dfs(nums, i + 1, reside - nums[i]);
+        }
+    }
 
     public int findTargetSumWaysIter(int[] nums, int S) {
         sum(nums, 0, 0, S);

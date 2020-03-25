@@ -79,4 +79,14 @@ public class InvertTree {
         root.right = right;
         return root;
     }
+
+    public TreeNode invertTree2(TreeNode root) {
+        if (root == null) return null;
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        invertTree2(root.left);
+        invertTree2(root.right);
+        return root;
+    }
 }

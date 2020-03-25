@@ -58,14 +58,16 @@ public class Knapsack {
      */
     private static int maxValue2(int[] weight, int[] value, int capacity){
         int[] dp = new int[capacity + 1];
-        for (int j = 0; j <= capacity; j++) {
-            if (weight[0] <= j) {
-                dp[j] = value[0];
-            } else {
-                dp[j] = 0;
-            }
-        }
-        for (int i = 1; i < weight.length; i++){
+        //不要求把书包装满的，没必要进行特殊的初始化。
+        //在第一次遍历的时候从0开始  （有的好多例子都是从1开始的，那里的1表示第一个商品 ，一样的事）
+//        for (int j = 0; j <= capacity; j++) {
+//            if (weight[0] <= j) {
+//                dp[j] = value[0];
+//            } else {
+//                dp[j] = 0;
+//            }
+//        }
+        for (int i = 0; i < weight.length; i++){//没有上面的初始化这里从0开始。。
             for (int j = capacity; j >= 0; j--) {//注意这里逆序遍历
                 if (j - weight[i] >= 0) {
                     dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);

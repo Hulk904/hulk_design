@@ -49,6 +49,8 @@ public class BuildTree {
 
     /**
      * 还需要具体理解
+     * preorder 中的第一个元素一定是树的根，这个根又将 inorder 序列分成了左右两棵子树。
+     * 现在我们只需要将先序遍历的数组中删除根元素，然后重复上面的过程处理左右两棵子树
      * @param left
      * @param right
      * @return
@@ -60,8 +62,8 @@ public class BuildTree {
         TreeNode treeNode = new TreeNode(preOrder[preIndex]);
         Integer index = inOrderMap.get(preOrder[preIndex]);
         preIndex++;//为啥？？  每个节点都有左右子树，都需要依次构造/
-        treeNode.left = treeNode(left, index);
-        treeNode.right = treeNode(index + 1, right);
+        treeNode.left = treeNode(left, index);//left -> index 左子树范围
+        treeNode.right = treeNode(index + 1, right); // index + 1  -> right 右子树范围
         return treeNode;
     }
 

@@ -3,6 +3,8 @@ package algorithms.top100;
 import algorithms.TreeNode;
 import apple.laf.JRSUIUtils;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -12,6 +14,39 @@ public class MergeTrees {
 
     public static void main(String[] args) {
 
+    }
+
+    public TreeNode mergeTreesTimes2(TreeNode t1, TreeNode t2){
+        if (t1 == null){
+            return t2;
+        }
+        if (t2 == null){
+            return t1;
+        }
+        Queue<TreeNode[]> queue = new LinkedList<>();
+        queue.add(new TreeNode[]{t1, t2});
+        while (!queue.isEmpty()){
+            TreeNode[] cur = queue.poll();
+            if (cur[1]== null){
+                continue;
+            }
+            if (cur[0] == null){
+                cur[0] = cur[1];
+                continue;
+            }
+            cur[0].val += cur[1].val;
+            if (cur[0].left != null){
+                queue.add(new TreeNode[]{cur[0].left, cur[1].left});
+            } else {
+                cur[0].left = cur[1].left;
+            }
+            if (cur[0].right != null){
+                queue.add(new TreeNode[]{cur[0].right, cur[1].right});
+            } else {
+                cur[0].right = cur[1].right;
+            }
+        }
+        return t1;
     }
 
     /**

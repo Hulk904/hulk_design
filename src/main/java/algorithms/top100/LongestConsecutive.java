@@ -35,6 +35,9 @@ public class LongestConsecutive {
         }
         int maxLength = 0;
         for (int i = 0; i < nums.length; i++){
+            /*
+            因为后面是从前往后统计的，这样可以避免重复统计
+             */
             if (set.contains(nums[i] - 1)){
                 continue;
             }

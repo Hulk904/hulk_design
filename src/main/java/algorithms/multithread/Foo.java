@@ -1,9 +1,10 @@
-package algorithms.top100.multithread;
+package algorithms.multithread;
 
 import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by yangyuan on 2020/1/13.
+ * 1114. 按序打印
  */
 public class Foo {
 

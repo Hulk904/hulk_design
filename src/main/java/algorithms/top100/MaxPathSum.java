@@ -40,10 +40,10 @@ public class MaxPathSum {
         if (treeNode == null){
             return 0;
         }
-        int leftSum = Math.max(maxSum2(treeNode.left), 0);//注意 不要直接返回 maxSum2(treeNode.left) 了 ，负数就必要算上了
-        int rightSum = Math.max(maxSum2(treeNode.right), 0);
+        int leftSum = maxSum2(treeNode.left);
+        int rightSum = maxSum2(treeNode.right);
         maxSum = Math.max(maxSum, leftSum + rightSum + treeNode.val);
-        return Math.max(leftSum + treeNode.val, rightSum + treeNode.val);
+        return Math.max(0, Math.max(leftSum + treeNode.val, rightSum + treeNode.val));//注意 不要直接返回 maxSum2(treeNode.left) 了 ，负数就没必要算上了
     }
 
     public int maxPathSum(TreeNode root) {

@@ -14,20 +14,23 @@ import com.alibaba.fastjson.JSON;
 public class SortList {
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(4);
-        ListNode node1= new ListNode(2);
+        ListNode head = new ListNode(-1);
+        ListNode node1= new ListNode(5);
         head.next = node1;
-        ListNode node2 = new ListNode(1);
+        ListNode node2 = new ListNode(3);
         node1.next = node2;
-        ListNode node3= new ListNode(3);
+        ListNode node3= new ListNode(4);
         node2.next = node3;
-        System.out.println(JSON.toJSONString(sortList(head)));
+        ListNode node4 = new ListNode(0);
+        node3.next = node4;
+        System.out.println(JSON.toJSONString(sortListTimes2(head)));
     }
 
 
     /**
      * 找到中间分割点，把连表分为两个  然后归并排序
      * 与数组不一样的，连表不需要辅助空间
+     * 使用到了栈，其实是不满足的。
      * @param head
      * @return
      */
@@ -60,5 +63,116 @@ public class SortList {
         }
         cur.next = p1 == null ? p2 : p1;
         return result.next;
+    }
+
+    /**
+     * 迭代实现， 常数空间
+     * @param head
+     * @return
+     */
+    public static ListNode sortList2(ListNode head) {
+
+        ListNode temp = head;
+        int lenght = 0;
+        while (temp != null){
+            temp = temp.next;
+            lenght++;
+        }
+        ListNode dummy = new ListNode(1);
+        dummy.next = head;
+        for (int i = 1; i < lenght; i *=2){//i 相当于一个区间的长度，一次比较两个区间的数据
+            ListNode cur = dummy;
+            for (int j = 0; j + i < lenght; j += i*2){// 比较之后每次跨越两个区间
+                ListNode left = cur.next, right = cur.next;
+                for (int k = i; k > 0; k--){
+                    right = right.next;
+                }
+                int l = 0, r = 0;//下标
+                //比较两个连表
+                while (l < i && r < i && right != null){
+                    if (left.val > right.val){
+                        cur.next = right;
+                        cur = right;
+                        right = right.next;
+                        r++;
+                    } else {
+                        cur.next = left;
+                        cur = left;
+                        left = left.next;
+                        l++;
+                    }
+                }
+                //左边的没有走完呢，后序给连上
+                while (l < i){
+                    cur.next = left;
+                    cur = left;
+                    left = left.next;
+                    l++;
+                }
+                //同理右边没有走完的给串上
+                while (r < i && right != null){
+                    cur.next = right;
+                    cur = right;
+                    right = right.next;
+                    r++;
+                }
+                cur.next = right;//和下一个区间连上
+            }
+        }
+        return dummy.next;
+    }
+
+    public static ListNode sortListTimes2(ListNode head) {
+        if (head == null){
+            return head;
+        }
+        int length = 0;
+        ListNode temp = head;
+        while (temp != null){
+            length++;
+            temp = temp.next;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        for (int i = 1; i < length; i*=2){
+            ListNode cur = dummy;
+            for (int j = 0; j + i < length; j+=2*i){
+                int l = 0, r = 0;
+                ListNode left = cur.next, right = cur.next;
+                int k = i;
+                while(k > 0){
+                    k--;
+                    right = right.next;
+                }
+
+                while ( l < i && r < i && right != null){
+                    if (left.val < right.val){
+                        l++;
+                        cur.next = left;
+                        cur = left;
+                        left = left.next;
+                    } else {
+                        r++;
+                        cur.next = right;
+                        cur = right;
+                        right = right.next;
+                    }
+                }
+                while (l < i){
+                    l++;
+                    cur.next = left;
+                    cur = cur.next;
+                    left = left.next;
+                }
+                while ( r < i && right != null){
+                    r++;
+                    cur.next = right;
+                    cur = cur.next;
+                    right = right.next;
+                }
+                cur.next = right;
+            }
+        }
+        return dummy.next;
     }
 }

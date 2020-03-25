@@ -88,15 +88,18 @@ public class ReverseBetween {
         }
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode pre = dummy;
+        ListNode pre = dummy;//pre 为要翻转节点的前驱
         for (int i = 1; i < m; i++){
             pre = pre.next;
         }
         ListNode cur = pre.next;
+        //把cur的next 插到pre的后面
         for (int i = m; i < n; i++){
             ListNode next = cur.next;
             cur.next = next.next;
-            next.next = pre.next;//cur;//这里不能赋值为cur，第一次可能准确，但是后续的翻转就会有问题了。。
+            //cur;//这里不能赋值为cur，第一次可能准确，但是后续的翻转就会有问题了。。
+            //cur的指向一直未变
+            next.next = pre.next;
             pre.next = next;
         }
         return dummy.next;

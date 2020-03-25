@@ -27,6 +27,28 @@ public class RangeMerge {
         System.out.println(JSON.toJSONString(merge(data)));
     }
 
+    public static int[][] mergeTimes2(int[][] intervals){
+        Arrays.sort(intervals, (t1, t2) -> t1[0] - t2[0]);
+        List<int[]> result = new ArrayList<>();
+        for (int i = 0; i < intervals.length; i++){
+            if (result.size() > 0){
+                int[] range = result.get(result.size() - 1);
+                if (range[1] < intervals[i][0]){
+                    result.add(intervals[i]);
+                } else {
+                    result.get(result.size() - 1)[1] = Math.max(result.get(result.size() - 1)[1], intervals[i][1]);
+                }
+            }else {
+                result.add(intervals[i]);
+            }
+        }
+        int[][] r = new int[result.size()][];
+        for (int i = 0; i < result.size(); i++){
+            r[i] = result.get(i);
+        }
+        return r;
+    }
+
     public static int[][] merge(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparing(t -> t[0]));
         List<int[]> result = new ArrayList<>();

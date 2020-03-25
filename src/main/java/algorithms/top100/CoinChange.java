@@ -1,6 +1,8 @@
 package algorithms.top100;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by yangyuan on 2020/1/15.
@@ -42,6 +44,54 @@ public class CoinChange {
 
         }
         return dp[amount] == amount + 1? -1 : dp[amount];
+    }
+
+
+
+    public boolean judgePoint24(int[] nums) {
+        List<Double> list = new ArrayList();
+        for (int i = 0; i < nums.length; i++){
+            list.add(i + 0.0);
+        }
+        return judge(list);
+    }
+
+    private boolean judge(List<Double> nums){
+        if (nums.size() == 0) return false;
+        if (nums.size() == 1){
+            return Math.abs(nums.get(0) - 24) < 1e-6;
+        }
+        for (int i = 0 ; i < nums.size(); i++){
+            for ( int j = 0; j < nums.size(); j++){
+                if (i != j){
+                    List<Double> newData = new ArrayList();
+                    for (int m = 0; m < nums.size(); m++){
+                        if (m != i && m != j){
+                            newData.add(nums.get(m));
+                        }
+                    }
+                    for(int n = 0; n < 4; n++){
+                        if (n < 2 && j > i){
+                            continue;
+                        } else if(n == 0){
+                            newData.add(nums.get(i)+nums.get(j));
+                        } else if (n == 1){
+                            newData.add(nums.get(i) * nums.get(j));
+                        } else if (n == 2){
+                            newData.add(nums.get(i) - nums.get(j));
+                        } else if (n == 3) {
+                            if (nums.get(j) == 0){
+                                continue;
+                            }
+                            newData.add(nums.get(i)/nums.get(j));
+                        }
+                        if (judge(newData)) return true;
+                        newData.remove(newData.size() - 1);
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }

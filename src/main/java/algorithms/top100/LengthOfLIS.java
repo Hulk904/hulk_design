@@ -17,14 +17,14 @@ import java.util.Arrays;
 public class LengthOfLIS {
 
     public static void main(String[] args) {
-        int[] data = {10,9,2,5,3,7,101,18,16,13,10};
-        System.out.println(lengthOfLISDynamic(data));
+        int[] data = {1,3,5,2,4,6,7};
+        System.out.println(lengthOfLIS(data));
     }
 
 
     /**
      * 动态规划 + 二分查找
-     *
+     * dp 存放的是上升的序列
      * @param nums
      * @return
      */
@@ -32,13 +32,12 @@ public class LengthOfLIS {
         int[] dp = new int[nums.length];
         int res = 0;
         for (int i = 0; i < nums.length; i++){
-            int index = Arrays.binarySearch(dp, 0, res, nums[i]);
-            int position = 0;
-            if (index < 0){
-                position = (-index - 1);
+            int position =  Arrays.binarySearch(dp, 0, res, nums[i]);
+            if (position < 0){
+                position = -position -1;
                 dp[position] = nums[i];
             }
-            if (position == res){
+            if (res == position){
                 res++;
             }
         }

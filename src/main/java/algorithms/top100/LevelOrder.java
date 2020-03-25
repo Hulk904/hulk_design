@@ -2,11 +2,9 @@ package algorithms.top100;
 
 import algorithms.TreeNode;
 import com.alibaba.fastjson.JSON;
+import com.sun.source.tree.Tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by yangyuan on 2020/1/5.
@@ -23,8 +21,29 @@ public class LevelOrder {
         node1.left = node2;
         TreeNode node3 = new TreeNode(7);
         node1.right = node3;
-        System.out.println(JSON.toJSONString(levelOrderIterator(root)));
+        System.out.println(JSON.toJSONString(levelOrderIterator2(root)));
 
+    }
+
+    public static  List<List<Integer>> levelOrderIterator2(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        List<List<Integer>> result = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> item = new ArrayList<>();
+            while (size-- > 0) {
+                TreeNode cur = queue.poll();
+                item.add(cur.val);
+                if (cur.left != null) queue.add(cur.left);
+                if (cur.right != null) queue.add(cur.right);
+            }
+            result.add(item);
+        }
+        return result;
     }
 
     /**

@@ -7,6 +7,7 @@ import java.util.*;
 
 /**
  * Created by yangyuan on 2020/1/13.
+ *
  */
 public class LowestCommonAncestor {
 
@@ -104,6 +105,11 @@ public class LowestCommonAncestor {
     /**
      * 简洁的思路 覃超 视频里的
      * 思路： 在左树里面找是否存在p、q节点。在右子树是否存在pq节点
+     *
+     * 如果以root为根的子树中包含p和q，则返回他们的最近公共祖先
+     * 如果只包含p则返回p
+     * 如果只包含q则返回q
+     * 如果都不包含则返回null
      * @param root
      * @param p
      * @param q

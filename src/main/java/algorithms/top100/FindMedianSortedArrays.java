@@ -1,5 +1,9 @@
 package algorithms.top100;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by yangyuan on 2020/1/26.
  * 给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
@@ -32,7 +36,7 @@ public class FindMedianSortedArrays {
         }
         int amin = 0, amax = m;
         int halfLen = (m + n + 1)/2;
-        while (amin <= amax){
+        while (amin <= amax){//等号不能少
             int i = (amin + amax)/2;
             int j = halfLen - i;
             if (i < amax && nums1[i] < nums2[j - 1]) {

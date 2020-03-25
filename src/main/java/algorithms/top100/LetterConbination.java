@@ -23,10 +23,53 @@ public class LetterConbination {
         put("9", "wxyz");
     }};
 
+    static String[] chars = new String[]{"abc","def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+    /**
+     * for 循环实现
+     * @param digits
+     * @return
+     */
+    private static  List<String> letterConbination2(String digits){
+        if ("".equals(digits)){
+            return new ArrayList<>();
+        }
+        List<String> result = new ArrayList<>();
+        result.add("");
+        for (char c : digits.toCharArray()){
+            List<String> temp = new ArrayList<>();
+            for (char t : chars[c - '2'].toCharArray()){
+                for (String s : result){
+                    temp.add(s + t);
+                }
+            }
+            result = temp;
+        }
+        return result;
+    }
+
     static List<String> result = new ArrayList<>();
     public static void main(String[] args) {
-        System.out.println(JSON.toJSON(letterConbination("23")));
+        System.out.println(JSON.toJSON(letterConbination2("23")));
 
+    }
+
+    private static  List<String> letterConbinationTimes2(String digits){
+        if ("".equals(digits)){
+            return new ArrayList<>();
+        }
+        generate(digits, "");
+        return result;
+    }
+    private static void generate(String digit, String current){
+        if ("".equals(digit) || digit == null){
+            result.add(current);
+            return;
+        }
+        String target = phone.get(digit.substring(0,1));
+        for (int i = 0; i < target.length(); i++){
+            generate(digit.substring(1, digit.length()), current + target.substring(i, i+ 1));
+        }
     }
 
     private static  List<String> letterConbination(String digits){

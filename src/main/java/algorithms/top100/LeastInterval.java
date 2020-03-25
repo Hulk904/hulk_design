@@ -43,6 +43,7 @@ public class LeastInterval {
 
     /**
      * 思路不一样  算出idel块，然后加上总的tasks就是最后的答案了。。
+     * 不用担心任务种类比间隔要大，这样没有关系。直接往后排就行
      * @param tasks
      * @param n
      * @return

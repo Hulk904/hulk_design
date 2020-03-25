@@ -63,6 +63,7 @@ public class NextPermutation {
         if (nums.length <=1 ){
             return 0;
         }
+        //从右边开始找，所以 置换后 后面的数是降序的。。。
         for (int i = nums.length - 1; i >=0; i--){
             if (i -1 >= 0 && nums[i - 1] < nums[i]){
                 return i - 1;

@@ -19,6 +19,16 @@ public class MaxSubArray {
         System.out.println(maxSubArray(array));
     }
 
+    public static int maxSubArrayTimes2(int[] nums){
+        int curMax = nums[0];
+        int result = nums[0];
+        for (int i = 1; i < nums.length; i++){
+            curMax = Math.max(nums[i], curMax + nums[i]);
+            result = Math.max(result, curMax);
+        }
+        return result;
+    }
+
     /**
      * 贪心实现
      算法：

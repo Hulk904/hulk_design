@@ -28,7 +28,7 @@ public class CanJump {
 
     public static void main(String[] args) {
         int[] data = {3,2,1,0,4};
-        System.out.println(canJump(data));
+        System.out.println(canJump1(data));
     }
 
     /**
