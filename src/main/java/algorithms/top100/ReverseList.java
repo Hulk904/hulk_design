@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * Created by yangyuan on 2020/1/9.
+ * 翻转连表
  */
 public class ReverseList {
 
@@ -15,7 +16,7 @@ public class ReverseList {
         ListNode listNode2 = new ListNode(1);
         listNode2.next = listNode1;
         System.out.println(JSON.toJSONString(listNode2));
-        System.out.println(JSON.toJSONString(reverseListIterator(listNode2)));
+        System.out.println(JSON.toJSONString(reverseList(listNode2)));
 
     }
 

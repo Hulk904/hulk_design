@@ -37,20 +37,43 @@ public class MergeSort {
                 temp[t++] = data[second++];
             }
         }
-//        if (first <= mid){
-//            while (t < data.length){ //注意 同上面一样 数组的又边界变为了right而不是 data.length
-//                temp[t++] = data[second++];
-//            }
-//        } else {
-//            while (t < data.length){
-//                temp[t++] = data[first++];
-//            }
-//        }
         while (first <= mid) temp[t++] = data[first++];
         while (second <= right) temp[t++] = data[second++];//对于临界值的处理，是不是要包含进去  <=  还是 <
         //for (int i = 0; i < data.length; i++){
         for (int i = left; i <= right; i++){
             data[i] = temp[i];
+        }
+    }
+
+    /**
+     * 归并排序 另一种写法  递归实现
+     * @param nums
+     * @return
+     */
+    public int[] sortArray(int[] nums) {
+        mergeSort2(nums, 0, nums.length - 1);
+        return nums;
+    }
+
+    void mergeSort2(int[] nums, int left, int right){
+        if (left >= right) return;
+        int mid = (left + right) >> 1;
+        mergeSort2(nums, left, mid);
+        mergeSort2(nums, mid + 1, right);
+        int[] temp = new int[nums.length];
+        int l = left, r = mid + 1;
+        int k = 0;
+        while (l <= mid && r <= right){
+            if (nums[l] <= nums[r]){
+                temp[k++] = nums[l++];
+            } else {
+                temp[k++] = nums[r++];
+            }
+        }
+        while(l <= mid) temp[k++] = nums[l++];
+        while(r <= right) temp[k++] = nums[r++];
+        for(int i = left, j =0; i <= right; i++,j++){
+            nums[i] = temp[j];
         }
     }
 

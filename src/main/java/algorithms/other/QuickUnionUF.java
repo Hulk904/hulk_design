@@ -17,6 +17,11 @@ public class QuickUnionUF {
         }
     }
 
+    /**
+     * 返回i的祖宗节点 + 路径压缩
+     * @param i
+     * @return
+     */
     private int findRoot(int i){
         int root = i;
         //找到真正的root
@@ -24,6 +29,7 @@ public class QuickUnionUF {
             root = roots[root];
         }
         //路径压缩
+        //这里的root已经是根了
         while (i != roots[i]){
             int temp = roots[i];
             roots[i] = root;

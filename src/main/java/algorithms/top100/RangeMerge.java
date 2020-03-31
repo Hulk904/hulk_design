@@ -24,6 +24,7 @@ public class RangeMerge {
 
     public static void main(String[] args) {
         int[][] data = {{1,3},{2,6},{8,10},{15,18}};
+
         System.out.println(JSON.toJSONString(merge(data)));
     }
 

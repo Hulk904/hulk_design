@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * Created by yangyuan on 2019/12/29.
+ * 34. 在排序数组中查找元素的第一个和最后一个位置
  * 给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
 
  你的算法时间复杂度必须是 O(log n) 级别。
@@ -43,5 +44,34 @@ public class SearchRange {
             }
         }
         return lo;
+    }
+
+    /**
+     *  推荐这个写法。。。
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] searchRange2(int[] nums, int target) {
+        if (nums.length == 0)return new int[]{-1, -1};
+        int l = 0, r = nums.length -  1;
+        while (l < r){
+            int mid = (l + r)/2;
+            if (nums[mid]  >= target) r = mid;
+            else l = mid + 1;
+        }
+        if (nums[l] != target){
+            return new int[]{-1, -1};
+        }
+        int a = l;
+        l = 0;
+        r = nums.length - 1;
+        while (l < r){
+            int mid = (l + r + 1)/2;
+            if (nums[mid] <= target) l = mid;
+            else r = mid - 1;
+        }
+        return new int[]{a,l};
+
     }
 }

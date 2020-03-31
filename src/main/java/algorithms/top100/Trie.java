@@ -51,7 +51,7 @@ public class Trie {
 
 class TrieNode {
 
-    private TrieNode[] nodes;
+    private TrieNode[] nodes;//子节点
 
     private final int R =26;
 
