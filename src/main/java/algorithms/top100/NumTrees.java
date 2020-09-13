@@ -21,7 +21,7 @@ public class NumTrees {
         array[1] = 1;
         for (int i = 2; i <= n; i++){
             for (int j = 1; j <= i; j++) {
-                array[i] += (array[j - 1] * array[i - j]);
+                array[i] += (array[j - 1] * array[i - j]);//生成数的个数 跟元素 个数相关
             }
         }
         return array[n];

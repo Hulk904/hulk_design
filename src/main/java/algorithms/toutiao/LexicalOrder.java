@@ -8,11 +8,18 @@ import java.util.Stack;
 
 /**
  * Created by yangyuan on 2020/2/2.
+ * 386. 字典序排数
+ * 给定一个整数 n, 返回从 1 到 n 的字典顺序。
+
+ 例如，
+
+ 给定 n =1 3，返回 [1,10,11,12,13,2,3,4,5,6,7,8,9] 。
  */
 public class LexicalOrder {
 
     public static void main(String[] args) {
-        System.out.println(JSON.toJSONString(lexicalOrder(134)));
+        LexicalOrder lexicalOrder = new LexicalOrder();
+        lexicalOrder.lexicalOrder2(13);
     }
 
     public static List<Integer> lexicalOrder(int n) {
@@ -36,6 +43,31 @@ public class LexicalOrder {
                     tree.push(t*10+i);
         }
         return res;
+    }
+
+    private List<Integer> res = new ArrayList<>();
+
+    private int n;
+
+    /**
+     * 递归实现
+     * @param n
+     * @return
+     */
+    public List<Integer> lexicalOrder2(int n){
+        this.n = n;
+        dfs(0);
+        return res;
+    }
+
+    private void dfs(int k){
+        if (k > n) return;
+        if (k != 0) res.add(k);
+        for (int i = 0; i <= 9; i++){
+            if (k*10 + i > 0){
+                dfs(10*k + i);
+            }
+        }
     }
 
 }

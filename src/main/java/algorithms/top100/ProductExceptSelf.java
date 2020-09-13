@@ -36,7 +36,11 @@ public class ProductExceptSelf {
         return result;
     }
 
-
+    /**
+     * 前后缀分解
+     * @param nums
+     * @return
+     */
     public static int[] productExceptSelf(int[] nums) {
         int[] result = new int[nums.length];
         result[0] = 1;

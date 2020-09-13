@@ -7,8 +7,8 @@ package algorithms.top100;
  */
 public class LongestPalindrom {
     public static void main(String[] args) {
-        String str = "bb";
-        System.out.println(longestPalindrome(str));
+        String str = "cbbd";
+        System.out.println(longestPalindrome3(str));
     }
 
     /**
@@ -62,7 +62,7 @@ public class LongestPalindrom {
         return max;
     }
 
-    public static String solution(String str){
+    public static String longestPalindrome2(String str){
         if (str == null || str == ""){
             return "";
         }
@@ -86,5 +86,28 @@ public class LongestPalindrom {
             right++;
         }
         return right - left - 1;
+    }
+
+    /**
+     * 代码相对简洁些  但是慢  （感觉是字符串增长是都会截取一次字符串）
+     * @param str
+     * @return
+     */
+    public static String longestPalindrome3(String str){
+        String res = "";
+        for (int i = 0; i < str.length(); i++){
+            int l = i - 1, r= i + 1;
+            while (l >=0 && r < str.length() && str.charAt(l) == str.charAt(r)) {
+                l--;r++;
+            }
+            if (res.length() < r - l - 1) res = str.substring(l + 1, r);
+            l = i; r = i + 1;
+            while (l >= 0 && r <str.length() && str.charAt(l) == str.charAt(r)){
+                l--;
+                r++;
+            }
+            if (res.length() < r - l - 1) res = str.substring(l + 1, r);
+        }
+        return res;
     }
 }

@@ -35,6 +35,6 @@ public class MedianFinder {
         if ((count & 1) == 1){//
             return minQueue.peek();
         }
-        return (minQueue.peek() + maxQueue.peek())/2.0;
+        return (minQueue.peek() + maxQueue.peek())/2.0;//注意2.0不然 回忽略小数了
     }
 }

@@ -10,6 +10,11 @@ import java.util.Stack;
 
 /**
  * Created by yangyuan on 2020/3/3.
+ * 257. 二叉树的所有路径
+ * 给定一个二叉树，返回所有从根节点到叶子节点的路径。
+
+ 说明: 叶子节点是指没有子节点的节点。
+ *
  */
 public class BinaryTreePaths {
 
@@ -42,6 +47,33 @@ public class BinaryTreePaths {
             dfs(root.right, path);
         }
     }
+
+    List<String> res = new ArrayList();
+
+    public List<String> binaryTreePath2(TreeNode root) {
+        if (root == null) return new ArrayList();
+        dfs(root, new Stack());
+        return res;
+    }
+
+    private void dfs(TreeNode root, Stack<String> stack){
+        if (root.left == null && root.right == null){
+            stack.push(root.val + "");
+            res.add(String.join("->", stack));
+            stack.pop();
+            return;
+        }
+        stack.push(root.val + "");
+        if (root.left != null){
+            dfs(root.left, stack);
+        }
+        if (root.right != null){
+            dfs(root.right, stack);
+        }
+        stack.pop();
+    }
+
+
 
 
 }

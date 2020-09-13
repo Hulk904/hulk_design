@@ -27,4 +27,20 @@ public class CountNodes {
         if (node == null) return 0;
         return 1 + leftLevel(node.left);
     }
+
+    public int countNodes2(TreeNode root) {
+        if (root == null) return 0;
+        TreeNode l = root.left, r = root.right;
+        int x = 1, y = 1;
+        while (l != null) {
+            l = l.left;
+            x++;
+        }
+        while(r != null){
+            r = r.right;
+            y++;
+        }
+        if (x == y) return (int)Math.pow(2, x) - 1;
+        return countNodes2(root.left) + 1 + countNodes2(root.right);
+    }
 }

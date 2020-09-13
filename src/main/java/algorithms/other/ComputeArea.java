@@ -13,8 +13,22 @@ package algorithms.other;
 public class ComputeArea {
 
 
-
+    /**
+     * 注意越界
+     * @param A
+     * @param B
+     * @param C
+     * @param D
+     * @param E
+     * @param F
+     * @param G
+     * @param H
+     * @return
+     */
     public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
-        return 0;
+        long x = (long)Math.min(D, H) - Math.max(B, F);
+        long y = (long)Math.min(C, G) - Math.max(A, E);
+        long allArea = ((long)D - B)*((long)C - A) + ((long)H - F)*((long)G - E);
+        return (int)((x <= 0 || y <= 0) ? allArea : allArea - x*y);
     }
 }

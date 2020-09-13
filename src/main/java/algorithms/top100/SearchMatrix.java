@@ -2,7 +2,7 @@ package algorithms.top100;
 
 /**
  * Created by yangyuan on 2020/1/13.
- *
+ *240. 搜索二维矩阵 II
  * 编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：
 
  每行的元素从左到右升序排列。
@@ -21,6 +21,8 @@ package algorithms.top100;
  给定 target = 5，返回 true。
 
  给定 target = 20，返回 false
+
+ 好像不能二分。。
 
  */
 public class SearchMatrix {

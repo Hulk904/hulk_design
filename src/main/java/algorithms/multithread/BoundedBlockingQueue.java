@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  */
 public class BoundedBlockingQueue {
+
     private Lock lock = new ReentrantLock();
 
     private Condition notFull = lock.newCondition();

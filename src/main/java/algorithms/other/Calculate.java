@@ -5,11 +5,69 @@ import java.util.Stack;
 
 /**
  * Created by yangyuan on 2020/3/24.
+ * 224. 基本计算器
+ *
+ * 实现一个基本的计算器来计算一个简单的字符串表达式的值。
+
+ 字符串表达式可以包含左括号 ( ，右括号 )，加号 + ，减号 -，非负整数和空格
+ AcWing 151. 表达式计算4   模版题 包括 乘除操作
  */
 public class Calculate {
 
     public static void main(String[] args) {
         System.out.println(calculate2("(1+(4+5+2)-3)+(6+8)"));
+    }
+
+    // 分为括号和其他两部分
+    // 能算就算
+    //数字压栈
+    //左括号压人栈中
+    //右括号将左括号之后的都算完
+    //运算符
+    //   当前运算符的优先级小于、等于栈顶优先级 则计算栈顶&压入栈顶
+    //   否则直接加入压入栈中
+    public int  calculateAcwing(String s){
+        Stack<Integer> num = new Stack<>();
+        Stack<Character> op = new Stack<>();//左括号和操作符号
+        for (int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if (c == ' ') continue;
+            if (Character.isDigit(c)){
+                int x = 0, j = i;
+                while (j < s.length() && Character.isDigit(s.charAt(j))) x = x*10 + (s.charAt(j++) - '0');
+                i = j - 1;
+                num.push(x);
+            } else if (c == '(') {
+                op.push(c);
+            }else if (c == ')') {
+                while (op.peek() != '(') eval(num, op);
+                op.pop();//左括号出栈
+            }else {//操作符
+                //栈中优先级比当前的高  计算栈顶 .
+                //因为只有 + -  所以一定成立
+                //需要排除 （ 的可能性
+                while (op.size() > 0 && op.peek() != '(') eval(num, op);
+                op.push(c);
+            }
+        }
+        while (op.size() > 0) eval(num,op);
+        return num.peek();
+
+    }
+
+    /**
+     * 进行一次计算
+     * @param num
+     * @param op
+     */
+    void eval(Stack<Integer> num, Stack<Character> op){
+        Integer b = num.pop();
+        Integer a = num.pop();
+        Character o = op.pop();
+        int r;
+        if (o == '+') r = a + b;
+        else r = a - b;
+        num.push(r);
     }
 
     /**

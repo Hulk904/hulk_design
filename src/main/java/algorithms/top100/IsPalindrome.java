@@ -2,7 +2,7 @@ package algorithms.top100;
 
 /**
  * Created by yangyuan on 2020/1/12.
- *
+ * 234. 回文链表
  * 请判断一个链表是否为回文链表。
 
  示例 1:
@@ -33,6 +33,12 @@ public class IsPalindrome {
         System.out.println(isPalindrome(listNode3));
     }
 
+    /**
+     * 遍历的过程中翻转前面的部分
+     * 不用先遍历一边求连表长度
+     * @param head
+     * @return
+     */
     public static boolean isPalindrome(ListNode head) {
         if(head == null || head.next == null){
             return true;

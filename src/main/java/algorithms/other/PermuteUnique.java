@@ -84,6 +84,13 @@ public class PermuteUnique {
         return res;
     }
 
+    /**
+     * 里面遍历的时候i直接从0开始的
+     * 所以 depth 理解为遍历的深度，便于最后退出。
+     * @param nums
+     * @param depth
+     * @param stack
+     */
     void dfs2(int[] nums, int depth, Stack<Integer> stack) {
         if (depth == nums.length){
             res.add(new ArrayList<>(stack));

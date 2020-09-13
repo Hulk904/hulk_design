@@ -10,6 +10,11 @@ package algorithms.top100;
 public class MaxProfit2 {
 
 
+    /**
+     * 一个 i到j的交易可以拆分为 i到i+1， i+1到i+2，...j-1到j 单天的交易
+     * @param prices
+     * @return
+     */
     public int maxProfit(int[] prices) {
         int res = 0;
         for (int i = 1; i < prices.length; i++){

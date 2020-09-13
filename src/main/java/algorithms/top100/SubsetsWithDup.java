@@ -41,7 +41,6 @@ public class SubsetsWithDup {
             //得从第二个数开始   如果是写i > 0 像 122，22 都会被过滤掉
             //和上个数字相等就跳过
             if (i > index && nums[i] == nums[i - 1]){
-                System.out.println(JSON.toJSONString(path));
                 continue;
             }
             path.push(nums[i]);

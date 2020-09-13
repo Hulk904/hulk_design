@@ -103,7 +103,7 @@ public class CanJump {
         if (nums.length <= 1){
             return true;
         }
-        int lastPos = nums.length - 1;
+        int lastPos = nums.length - 1;//最后可覆盖的点坐标
         for (int i = nums.length -1; i >= 0 ;i--){
             if (nums[i] + i >= lastPos){
                 lastPos = i;

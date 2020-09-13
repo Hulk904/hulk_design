@@ -60,7 +60,7 @@ public class MergeSort {
         int mid = (left + right) >> 1;
         mergeSort2(nums, left, mid);
         mergeSort2(nums, mid + 1, right);
-        int[] temp = new int[nums.length];
+        int[] temp = new int[right - left + 1];
         int l = left, r = mid + 1;
         int k = 0;
         while (l <= mid && r <= right){

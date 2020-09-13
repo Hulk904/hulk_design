@@ -32,7 +32,7 @@ public class SortColors {
                p0++;
            } else if (nums[cur] == 2){
                swap(nums, p2, cur);
-               p2--;
+               p2--;//cur 此时还不能++ ，因为还不知道是多少呢
            } else {
                cur++;//注意
            }

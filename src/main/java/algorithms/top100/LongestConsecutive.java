@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  * Created by yangyuan on 2020/1/8.
- *
+ *128. 最长连续序列
  * 给定一个未排序的整数数组，找出最长连续序列的长度。
 
  要求算法的时间复杂度为 O(n)。
@@ -36,7 +36,7 @@ public class LongestConsecutive {
         int maxLength = 0;
         for (int i = 0; i < nums.length; i++){
             /*
-            因为后面是从前往后统计的，这样可以避免重复统计
+            相当于从每一段的第一个元素开始统计 ，避免重复
              */
             if (set.contains(nums[i] - 1)){
                 continue;

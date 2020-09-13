@@ -59,12 +59,13 @@ public class FindAnagrams {
                     total--;
                 }
             }
+            //right++ 不能放在这里，得放在最后哦
             while (total == 0){
                 if (right - left + 1 == p.length()){
                     result.add(left);
                 }
                 char b = s.charAt(left);
-                if (needs[b - 'a'] > 0){
+                if (needs[b - 'a'] > 0){//关心的元素
                     window[b - 'a']--;
                     if (window[b - 'a'] < needs[b - 'a']){
                         total++;

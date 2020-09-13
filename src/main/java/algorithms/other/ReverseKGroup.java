@@ -49,4 +49,28 @@ public class ReverseKGroup {
         }
         return pre;
     }
+
+
+    public ListNode reverseKGroup2(ListNode head, int k) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        for (ListNode pre = dummy;;){
+            ListNode q = pre;
+            for (int i = 0; i < k && q != null; i++) q = q.next;
+            if (q == null) break;
+            ListNode a = pre.next, b = a.next;
+            //翻转内部的k-1个节点
+            for (int i = 0; i < k - 1; i++){
+                ListNode next = b.next;
+                b.next = a;
+                a = b;
+                b = next;
+            }
+            ListNode c = pre.next;
+            pre.next = a;
+            c.next = b;
+            pre = c;
+        }
+        return dummy.next;
+    }
 }

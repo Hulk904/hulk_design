@@ -80,7 +80,7 @@ public class FindDuplicateSubtrees {
         }
         String left = dfs(node.left);
         String right = dfs(node.right);
-        String t = node.val + "," + left + "," + right;
+        String t = node.val + "," + left + "," + right;//要是前序遍历才行哦。。
         if (map.containsKey(t)){
             if (map.get(t) == 1) {
                 treeNodes.add(node);

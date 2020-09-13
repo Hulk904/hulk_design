@@ -157,5 +157,34 @@ public class PathSum {
         return res + left + right;
     }
 
+    /**
+     *
+     */
+    Map<Integer, Integer> map = new HashMap();
+
+    private int target;
+
+    private int res;
+
+    public int pathSum4(TreeNode root, int sum) {
+        this.target = sum;
+        map.put(0, 1);
+        trace(root, 0);
+        return res;
+    }
+
+    private void trace(TreeNode node, int curSum){
+        if (node == null) return;
+        curSum += node.val;
+        Integer exitTimes = map.getOrDefault(curSum - target, 0);
+        if (exitTimes != 0){
+            res+=exitTimes;//注意是累加 而不是 res++. 像  0，1，1  target = 1 这种情况
+        }
+        map.put(curSum, map.getOrDefault(curSum, 0) + 1);
+        trace(node.left, curSum);
+        trace(node.right, curSum);
+        map.put(curSum, map.get(curSum) - 1);
+    }
+
 
 }

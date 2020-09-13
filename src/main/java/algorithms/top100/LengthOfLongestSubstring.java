@@ -32,7 +32,7 @@ public class LengthOfLongestSubstring {
         for (int right = 0; right < str.length(); right++){
             if (map.containsKey(str.charAt(right))){
                 // 需要Math.max 处理场景 abba
-                left = Math.max(left,map.get(str.charAt(right)) + 1);
+                left = Math.max(left,map.get(str.charAt(right)) + 1);//left 不能往前走。
             }
             result = Math.max(result, right - left + 1);
             map.put(str.charAt(right), right);

@@ -24,6 +24,7 @@ public class Codec {
         //System.out.println(deserialize("1,2,#,#,3,#,#,"));
     }
     // Encodes a tree to a single string.
+    //先序遍历
     public static String serialize(TreeNode root) {
         if (root == null){
             return "#,";

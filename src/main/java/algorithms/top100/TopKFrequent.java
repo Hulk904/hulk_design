@@ -29,10 +29,10 @@ public class TopKFrequent {
             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
         }
         int[] s = new int[nums.length + 1];
-        for (Map.Entry<Integer, Integer> entry:map.entrySet()){
+        for (Map.Entry<Integer, Integer> entry:map.entrySet()){//key  数字， value 频率
             s[entry.getValue()]++;
         }
-        int i = s.length - 1;
+        int i = s.length - 1;//频率由低到高
         int total = 0;
         for (; i >= 0 & total < k;){
             total += s[i--];

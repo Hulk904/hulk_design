@@ -14,7 +14,7 @@ import java.util.Stack;
  * 给定一个二叉树，
  * 迭代和递归实现。。。。
  */
-public class InorderTraversal {
+public class  InorderTraversal {
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
@@ -23,7 +23,7 @@ public class InorderTraversal {
         TreeNode node1 = new TreeNode(2);
         root.left = node1;
         //System.out.println(JSON.toJSONString(inorder(root)));
-        postOrder(root);//先序遍历
+        inorder(root);//先序遍历
 
     }
 
@@ -85,84 +85,8 @@ public class InorderTraversal {
     }
 
 
-    /**
-     * 先序 遍历
-     * 两个连表实现
-     *
-     * @param root
-     * @return
-     */
-    public static List<Integer> preorder(TreeNode root) {
-        LinkedList<TreeNode> stack = new LinkedList<>();
-        LinkedList<Integer> output = new LinkedList<>();
-        if (root == null) {
-            return output;
-        }
 
-        stack.add(root);
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pollLast();
-            output.add(node.val);
-            if (node.right != null) {
-                stack.add(node.right);
-            }
-            if (node.left != null) {
-                stack.add(node.left);
-            }
-        }
-        return output;
 
-    }
 
-    /**
-     * 后序遍历
-     * 结果保存在连表中
-     * @param root
-     * @return
-     */
-    public static List<Integer> postorder(TreeNode root) {
-        LinkedList<TreeNode> stack = new LinkedList<>();
-        LinkedList<Integer> output = new LinkedList<>();
-        if (root == null) {
-            return output;
-        }
 
-        stack.add(root);
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pollLast();
-            output.addFirst(node.val);
-            if (node.left != null) {
-                stack.add(node.left);
-            }
-            if (node.right != null) {
-                stack.add(node.right);
-            }
-        }
-        return output;
-    }
-
-    /**
-     * 后序遍历直接输出结果
-     * @param root
-     */
-    public static void postOrder(TreeNode root) {
-        TreeNode cur, pre = null;
-
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-
-        while (!stack.empty()) {
-            cur = stack.peek();
-            if ((cur.left == null && cur.right == null) || (pre != null && (pre == cur.left || pre == cur.right))) {
-                System.out.print(cur.val + "->");
-                stack.pop();
-                pre = cur;
-            } else {
-                if (cur.right != null)
-                    stack.push(cur.right);
-                if (cur.left != null)
-                    stack.push(cur.left);
-            }
-        }
-    }
 }

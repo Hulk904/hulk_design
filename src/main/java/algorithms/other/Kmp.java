@@ -15,7 +15,7 @@ public class Kmp {
 
     public static void main(String[] args) {
         Kmp kmp = new Kmp();
-        System.out.println(JSON.toJSONString(kmp.kmp("我爱你啊你在那", "你啊你")));
+        System.out.println(JSON.toJSONString(kmp.kmp(",tencent", "tencent")));
     }
 
     private List<Integer> kmp(String s, String p){

@@ -11,6 +11,7 @@ import java.util.List;
 public class RestoreIpAddresses {
 
     public static void main(String[] args) {
+        System.out.println(Integer.parseInt("09"));
         System.out.println(JSON.toJSONString(restoreIpAddresses("25525511135")));
 
     }
@@ -32,7 +33,7 @@ public class RestoreIpAddresses {
                                         .append(Integer.parseInt(s.substring(i, i + j)))
                                         .append(".").append(Integer.parseInt(s.substring(i + j, i + j + m)))
                                         .append(".").append(Integer.parseInt(s.substring(i + j + m)));
-                                if (sb.toString().length() == s.length() + 3){
+                                if (sb.toString().length() == s.length() + 3){//可以避免 0 开头的数字。 比如 124.03.2.4
                                     result.add(sb.toString());
                                 }
                                 sb.delete(0, sb.length());
@@ -43,6 +44,31 @@ public class RestoreIpAddresses {
             }
         }
         return result;
+    }
+
+    /**
+     * dfs 实现
+     */
+    List<String> res = new ArrayList<>();
+    public  List<String> restoreIpAddresses2(String s) {
+        dfs(s, 0, 0, "");
+        return res;
+    }
+
+    void dfs(String s, int u, int k, String path){
+        if (u == s.length()){
+            if (k == 4){
+                res.add((path.substring(0, path.length() - 1)));
+            }
+            return;
+        }
+        if (k == 4) return;
+        for (int i = u, t = 0; i < s.length(); i++){
+            if (i > u && s.charAt(u) == '0') break;
+            t = t*10 + (s.charAt(i) - '0');
+            if (t < 256) dfs(s, i + 1, k + 1, path + t + ".");
+            else break;
+        }
     }
 
 }

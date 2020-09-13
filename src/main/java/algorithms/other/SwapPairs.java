@@ -70,8 +70,9 @@ public class SwapPairs {
     public static  ListNode swapPairs2(ListNode head){
         ListNode dummy = new ListNode(0);
         dummy.next = head;
+        //p为要交换元素的前一个元素
         for (ListNode p = dummy; p.next != null && p.next.next != null;){
-            ListNode a = p.next, b = p.next.next;
+            ListNode a = p.next, b = p.next.next;//找到需要处理的两个点
             //指针指向变化 ，下面ab的值都没有变化哦
             //从左到右改变指向
             p.next = b; //第一步

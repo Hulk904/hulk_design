@@ -44,7 +44,7 @@ public class ReverseList {
         if (head == null || head.next == null){
             return head;
         }
-        ListNode temp = reverseList(head.next);
+        ListNode temp = reverseList(head.next);//返回的是翻转后的头节点（原先的尾节点） ，而不是head的next
         //temp.next = head;
         head.next.next = head; //注意
         head.next = null;

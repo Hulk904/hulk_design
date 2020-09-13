@@ -15,11 +15,15 @@ import java.util.List;
  输出: 12
  解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。
 
+ 类似多路归并算法
+
+
+
  */
 public class NthUglyNumber {
 
     public static void main(String[] args) {
-        System.out.println(nthUglyNumber2(12));
+        System.out.println(nthUglyNumber(10));
     }
 
     static int nthUglyNumber2(int n){
@@ -47,6 +51,11 @@ public class NthUglyNumber {
             if (newNum == uglyNumber.get(i)*2) i++;
             if (newNum == uglyNumber.get(j)*3) j++;
             if (newNum == uglyNumber.get(k)*5) k++;
+            //不要写成下面的判断， 会出现重复数据 1，2，3，4，5，6，6，8，9，10，10
+            //当 2*3  和  3*2 时 ，对应的i， j都需要增加
+//            if  (newNum == uglyNumber.get(i)*2) i++;
+//            else if (newNum == uglyNumber.get(j)*3) j++;
+//            else if (newNum == uglyNumber.get(k)*5) k++;
         }
         return uglyNumber.get(uglyNumber.size() - 1);
     }

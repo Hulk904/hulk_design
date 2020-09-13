@@ -7,7 +7,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int [] a = new int[]{3,1,34,34,43,6,78,-1};
-        quickSortTimes2(a, 0, a.length - 1);
+        quickSortNew(a, 0, a.length - 1);
         for(int i:a){
             System.out.println(i);
         }
@@ -61,5 +61,23 @@ public class QuickSort {
         array[left] = pirotKey;
         return left;
     }
+
+    private static void quickSortNew(int[] q, int l, int r){
+        if (l >= r) return;
+        int i = l - 1, j = r + 1, x =  q[(l + r) >>1];//取中间点，也可以取第一个点 q[l]
+        while (i < j){
+            while (q[++i] < x);
+            while (q[--j] > x);
+            if (i < j){//swap
+                int temp = q[i];
+                q[i] = q[j];
+                q[j] = temp;
+            }
+        }
+        quickSortNew(q, l, j);
+        quickSortNew(q, j + 1, r);
+    }
+
+
 
 }

@@ -95,4 +95,22 @@ public class LetterConbination {
         }
     }
 
+    private List<String> res = new ArrayList<>();
+
+    public List<String> letterCombinations(String digits) {
+        if ("".equals(digits)) return res;
+        dfs(digits, 0, "");
+        return res;
+    }
+
+    void dfs(String digits, int index, String cur){
+        if(index == digits.length()){
+            res.add(cur);
+            return ;
+        }
+        String s = chars[digits.charAt(index) - '2'];
+        for (int i = 0; i < s.length(); i++){
+            dfs(digits, index + 1, cur + s.charAt(i));
+        }
+    }
 }

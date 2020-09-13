@@ -24,6 +24,13 @@ public class WordPattern {
         wordPattern("abba", "dog dog dog dog");
     }
 
+    /**
+     * 一种方式是通过两个hashMap 做映射。
+     * 这里通过一个hashMap来实现。需要一个指针来指向比较的对象。
+     * @param pattern
+     * @param str
+     * @return
+     */
     public static  boolean wordPattern(String pattern, String str) {
         String[] word = str.split(" ");
         if (pattern.length() != word.length){

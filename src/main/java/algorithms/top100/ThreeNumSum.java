@@ -22,6 +22,11 @@ public class ThreeNumSum {
 
     }
 
+    /**
+     * 计算的时候第一个数和第二个数都需要去重
+     * @param array
+     * @return
+     */
     private static List<List<Integer>> threeNumSum(int[] array){
         if (array == null || array.length < 2){
             return new ArrayList<>();
@@ -30,15 +35,18 @@ public class ThreeNumSum {
         int i = 0;
         List<List<Integer>> result = new ArrayList<>();
         while(array[i] <=0 && i < array.length - 2){
+            //第一个数去重
             if (i-1 >= 0 && array[i] == array[i -1]){
                 i++;
                 continue;
             }
             for(int left = i +1, right = array.length -1; left < right;) {
+                //第二个数去重， 注意left - i > 1的条件， 不能排除第一个数。。。
                 if (left -i > 1 && left-1>=0 && array[left] == array[left -1]){
                     left++;
                     continue;
                 }
+                //下面这块可以没有，即第三个数没别要去重。
                 if (right + 1 < array.length && array[right] == array[right + 1]) {
                     right--;
                     continue;

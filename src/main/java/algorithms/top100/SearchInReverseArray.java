@@ -100,7 +100,6 @@ public class SearchInReverseArray {
                 }
             }
             min = nums[l];
-            System.out.println(min);
             if (target>= min && target <= nums[nums.length - 1]){
                 r = nums.length - 1;
             } else {
@@ -108,7 +107,6 @@ public class SearchInReverseArray {
                 l = 0;
             }
         }
-        System.out.println(l + "  " + r);
         while(l < r){
             int mid = l + r >> 1;
             if (nums[mid] >= target) r = mid;

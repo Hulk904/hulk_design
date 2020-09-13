@@ -40,6 +40,10 @@ public class StringExist {
             return false;
         }
         if (current == word.length() - 1){
+            //不能写成 下面这样 （在方法的最开始判断）， 不然像 [[a]], word = a 的用例过不了。因为后面的迭代是下一次元素的判断
+//            if (current == word.length()){
+//                return true;
+//            }
             return board[i][j] == word.charAt(current) ;
         }
         if (board[i][j] == word.charAt(current++)) {

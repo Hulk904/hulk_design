@@ -2,6 +2,8 @@ package algorithms.top100;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.Arrays;
+
 /**
  * Created by yangyuan on 2019/12/30.
  *
@@ -59,6 +61,11 @@ public class NextPermutation {
         }
     }
 
+    /**
+     *  返回交换的目标坐标  （从后往前， 第一个降序点）
+     * @param nums
+     * @return
+     */
     private static int reversePoint(int[] nums){
         if (nums.length <=1 ){
             return 0;
@@ -70,5 +77,20 @@ public class NextPermutation {
             }
         }
         return -1;
+    }
+
+    void nextPermutation2(int[] nums){
+        int k = nums.length - 1;
+        while ( k >0  && nums[k - 1] < nums[k]) k--;
+        if (k <= 0){
+            reverseArray(nums, 0);
+        } else {
+            int t = k;
+            while (t < nums.length && nums[t] > nums[k - 1] )t++;
+            int temp = nums[k - 1];
+            nums[k - 1] = nums[t - 1];
+            nums[t - 1] = temp;
+            reverseArray(nums, k);
+        }
     }
 }

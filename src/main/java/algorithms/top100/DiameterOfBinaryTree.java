@@ -49,7 +49,7 @@ public class DiameterOfBinaryTree {
         }
         int leftDepth = doDiameterOfBinaryTree(root.left);
         int rightDepth = doDiameterOfBinaryTree(root.right);
-        radius = Math.max(leftDepth + rightDepth, radius) ;
+        radius = Math.max(leftDepth + rightDepth, radius) ;//不需要加1 ，不是计算节点数呢
         return Math.max(leftDepth, rightDepth) + 1;
     }
 

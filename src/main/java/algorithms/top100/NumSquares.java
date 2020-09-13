@@ -33,4 +33,26 @@ public class NumSquares {
         }
         return dp[n];
     }
+
+    /**
+     * 数学方法
+     *  一个数最多 四个数平方和表示
+     *  。。。
+     * @param n
+     * @return
+     */
+    public int numSquares2(int n) {
+        if (check(n)) return 1;
+        for (int a = 1; a <= n/a; a++){
+            if (check(n - a*a)) return 2;
+        }
+        while (n%4 == 0) n/=4;
+        if (n%8 != 7) return 3;
+        return 4;
+    }
+
+    private boolean check (int x){
+        int r = (int)Math.sqrt(x);
+        return x == r*r;
+    }
 }

@@ -51,6 +51,10 @@ public class Knapsack {
 
     /**
      *  优化， 使用 N 空间复杂度
+     *  计算dp[i]时只依赖dp[i-1]所以可以用滚动数组来替代
+     *  由于dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight[i]] + value[i])
+     *  如果还是按从小到达遍历。在计算j时 j- weight[i]
+     *  还没有被计算出来呢。
      * @param weight
      * @param value
      * @param capacity
@@ -68,10 +72,8 @@ public class Knapsack {
 //            }
 //        }
         for (int i = 0; i < weight.length; i++){//没有上面的初始化这里从0开始。。
-            for (int j = capacity; j >= 0; j--) {//注意这里逆序遍历
-                if (j - weight[i] >= 0) {
-                    dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);
-                }
+            for (int j = capacity; j >= weight[i]; j--) {//注意这里逆序遍历
+                dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);
             }
             System.out.println(JSON.toJSONString(dp));
         }

@@ -77,10 +77,14 @@ public class DecodeString {
                 //j 记录对应 ] 的位置  ， sum起到计数的功能
                 int j = i + 1, sum = 1;
                 while (sum > 0) {
+                    //可不要写成下面的情况， 这里会导致j 加两次
+//                    if (s.charAt(j++) == '[') sum++;
+//                    if (s.charAt(j++) == ']') sum--;
                     if (s.charAt(j) == '[') sum++;
                     if (s.charAt(j) == ']') sum--;
                     j++;
                 }
+                //这里是取内部递归的串，i指向的是 [ 而 j指向的是]的下一位
                 String t = decodeString2(s.substring(i + 1, j - 1));
                 while (k-- > 0) res += t;
                 i = j;

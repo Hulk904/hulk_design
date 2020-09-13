@@ -28,6 +28,7 @@ public class ShortestSubarray {
         Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < cum.length; i++){
             //两个while呢
+            //比前面元素小，然后还在它后面，所以前面的元素不可能被选上，所以pop出来
             while (!deque.isEmpty() && cum[deque.getLast()] > cum[i]){//递增的队列
                 deque.removeLast();
             }

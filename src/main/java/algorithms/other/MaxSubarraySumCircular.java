@@ -5,6 +5,10 @@ import java.util.Deque;
 
 /**
  * Created by yangyuan on 2020/3/6.
+ * 918. 环形子数组的最大和
+ *
+ * 单调队列的问题
+ * 这个跟 数组的最大子数组和思路还是相差挺大的，如果按照数组的思维 估计会陷入死胡同
  */
 public class MaxSubarraySumCircular {
 
@@ -13,6 +17,13 @@ public class MaxSubarraySumCircular {
         System.out.println(maxSubarraySumCircular(data));
     }
 
+    /**
+     * 先计算前缀和
+     * 计算出前缀和后。求以某个点结尾的最大和，就是求前面n范围内的最小前缀和 （相减便是 最大了）
+     * 然后依次求出每个点 ，最终得到结果
+     * @param
+     * @return
+     */
     public static int maxSubarraySumCircular(int[] A) {
         int[] p = new int[A.length*2];
         for (int i = 0; i < p.length; i++){

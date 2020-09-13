@@ -83,6 +83,8 @@ public class SortList {
         for (int i = 1; i < lenght; i *=2){//i 相当于一个区间的长度，一次比较两个区间的数据
             ListNode cur = dummy;
             for (int j = 0; j + i < lenght; j += i*2){// 比较之后每次跨越两个区间
+                //这里得注意。 不要写成 ListNode cur = dummy.next,  然后这里初始化 left= cur, right = cur 这样是不对的
+                //在内层for循环，cur指向的是比完数据的点， 所以下一轮当然得从cur.next开始。。。
                 ListNode left = cur.next, right = cur.next;
                 for (int k = i; k > 0; k--){
                     right = right.next;

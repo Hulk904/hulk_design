@@ -93,7 +93,7 @@ public class ReverseBetween {
             pre = pre.next;
         }
         ListNode cur = pre.next;
-        //把cur的next 插到pre的后面
+        //把cur的next 插到pre的后面,  cur指向不变，所以不能在for循环里定义 , pre 的指向同样没有变
         for (int i = m; i < n; i++){
             ListNode next = cur.next;
             cur.next = next.next;

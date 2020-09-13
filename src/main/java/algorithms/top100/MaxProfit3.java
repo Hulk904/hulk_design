@@ -16,7 +16,7 @@ package algorithms.top100;
 public class MaxProfit3 {
 
     public int maxProfit(int[] prices) {
-        int dp_i_0 = 0, dp_i_1 = Integer.MIN_VALUE;
+        int dp_i_0 = 0,  dp_i_1 = Integer.MIN_VALUE;
         int dp_i2_0 = 0;//不持有  前天的
         for (int i = 0; i < prices.length; i++){
             int temp = dp_i_0;

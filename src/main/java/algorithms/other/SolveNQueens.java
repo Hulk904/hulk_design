@@ -65,7 +65,7 @@ public class SolveNQueens {
             }
             return ;
         }
-        //选择放皇后
+        //选择不放皇后
         dfs(x, y + 1, s);
 
         //选择放皇后
@@ -94,12 +94,12 @@ public class SolveNQueens {
         }
         //按行枚举 所以没有row了
         for (int i = 0; i < n; i++){
-            if (!col[i] && !pie[u + i] && !la[i -u + n]){//可以选择
+            if (!col[i] && !pie[u + i] && !la[i -u + n]){//可以选择  i-u+n 完全是为了避免负数，才统一偏移位置
                 g[u][i] = 'Q'; //作出选择
                 col[i] = pie[u + i] = la[i - u + n] = true;
                 dfs(u + 1);
-                g[u][i] = '.';
-                col[i] = pie[u + i] = la[i - u + n] = false;
+                g[u][i] = '.';//回溯，撤销选择
+                col[i] = pie[u + i] = la[i - u + n] = false;//也需要撤销选择
             }
         }
     }

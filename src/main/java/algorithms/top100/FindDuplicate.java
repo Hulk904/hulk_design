@@ -2,8 +2,9 @@ package algorithms.top100;
 
 /**
  * Created by yangyuan on 2020/1/14.
- *
- * 给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。
+ *287. 寻找重复数
+ * 给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），
+ * 可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。
 
  示例 1:
 
@@ -16,6 +17,8 @@ package algorithms.top100;
  只能使用额外的 O(1) 的空间。
  时间复杂度小于 O(n2) 。
  数组中只有一个重复的数字，但它可能不止重复出现一次。
+
+
 
  */
 public class FindDuplicate {
@@ -45,6 +48,21 @@ public class FindDuplicate {
             p1 = nums[p1];
         }
         return p;
+    }
+
+    /**
+     * 只能处理只有一个重复数，并且只重复了一次的场景
+     * 2，2，2，2  case 就不满足
+     * @param nums
+     * @return
+     */
+    public int findDuplicateError(int[] nums) {
+        int n = nums.length - 1;
+        int sum = (1+n)*n/2;
+        for (int i:nums){
+            sum-=i;
+        }
+        return -sum;
     }
 
     /**

@@ -68,7 +68,7 @@ public class Permute {
         for (int i = 0; i < nums.length; i++){
             if (!visited[i]) {//visisted 少不了啊
                 // 也可以通过下面的方法进行剪枝， 这样就可以不需要visited标记是否选择过了。。。
-                // path.contains(nums[i]);
+                // path.contains(nums[i]);  但是 contains的时间复杂度为 o(n)的。。
                 visited[i] = true;
                 path.add(nums[i]);
                 dfs(nums, start + 1);

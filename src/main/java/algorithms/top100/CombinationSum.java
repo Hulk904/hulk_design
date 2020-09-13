@@ -81,7 +81,6 @@ public class CombinationSum {
                  continue;
              }
              item.push(candidates[i]);
-             System.out.println(item.toString());
              dfs(candidates, i, item, reside - candidates[i]);
              item.pop();
          }

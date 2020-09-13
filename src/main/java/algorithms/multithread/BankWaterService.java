@@ -15,7 +15,9 @@ public class BankWaterService implements Runnable{
     private ConcurrentHashMap<String, Integer> sheetBankWaterCount = new ConcurrentHashMap<>();
 
     private  void count (){
-        for (int i = 0 ; i < 8; i++){//并发编程艺术上面写的是4  ，主要是为了讲解CyclicBarrier的使用
+        //并发编程艺术上面写的是4  ，主要是为了讲解CyclicBarrier的使用
+        //会每四组一轮（凑足四个就放行）
+        for (int i = 0 ; i < 8; i++){
             executor.execute(() -> {
                 sheetBankWaterCount.put(Thread.currentThread().getName(), 1);
                 try {

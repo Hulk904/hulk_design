@@ -1,5 +1,8 @@
 package algorithms.rectangle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by yangyuan on 2020/1/29.
  */
@@ -47,5 +50,27 @@ public class SpiralOrderPrint {
         while (m > tr){
             System.out.print(data[m--][tc]+ " ");
         }
+    }
+
+    public List<Integer> spiralOrderNew(int[][] matrix) {
+        List<Integer> res = new ArrayList();
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int dx[] = {0, 1, 0, -1};
+        int dy[] = {1, 0, -1, 0};
+        boolean[][] st = new boolean[n][m];
+        for (int i = 0 ,x = 0, y = 0 , d = 0; i < n*m; i++){
+            res.add(matrix[x][y]);
+            st[x][y]= true;
+            int a = x + dx[d], b= y + dy[d];
+            if (a < 0 || a >= n || b < 0 || b >= m || st[a][b]){
+                d = (d + 1)%4;
+                a = x + dx[d];
+                b= y + dy[d];
+            }
+            x = a;
+            y = b;
+        }
+        return res;
     }
 }

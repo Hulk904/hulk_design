@@ -16,6 +16,7 @@ package algorithms.top100;
 public class MaxProduct {
 
     public static void main(String[] args) {
+        System.out.println(null == null);
         int[] data = {-4,-3,-2};
         System.out.println(maxProduct(data));
 

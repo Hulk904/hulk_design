@@ -1,5 +1,8 @@
 package algorithms.top100;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by yangyuan on 2020/1/17.
  */
@@ -28,5 +31,22 @@ public class FirstMissingPositive {
             }
         }
         return nums.length + 1;
+    }
+
+    /**
+     * 空间复杂度是 o(n) 依赖 HashSet实现
+     * @param nums
+     * @return
+     */
+    public int firstMissingPositive2(int[] nums) {
+        Set<Integer> set = new HashSet();
+        for (int i:nums){
+            set.add(i);
+        }
+        int res = 1;
+        while (set.contains(res)){
+            res++;
+        }
+        return res;
     }
 }
