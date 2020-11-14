@@ -82,4 +82,36 @@ public class SwapPairs {
         }
         return dummy.next;
     }
+
+    /**
+     * 先分为两个链表然后再串起来 代码比较长。。。
+     * @param head
+     * @return
+     */
+    public ListNode swapPairs3(ListNode head) {
+        ListNode slow = head;
+        if (slow == null) return head;
+        ListNode fast = head.next;
+        if (fast == null) return head;
+        ListNode root = fast,  p2 = fast;
+        ListNode p1 = slow;
+        while (fast != null){
+            slow.next = fast.next;
+            slow = slow.next;
+            if (slow == null) break;
+            fast.next = slow.next;
+            fast = fast.next;
+        }
+        ListNode cur = p2;
+        while (p2 != null){
+            p2 = p2.next;
+            cur.next = p1;
+            p1 = p1.next;
+            cur = cur.next;
+            if (p2 == null) break;
+            cur.next = p2;
+            cur = cur.next;
+        }
+        return root;
+    }
 }

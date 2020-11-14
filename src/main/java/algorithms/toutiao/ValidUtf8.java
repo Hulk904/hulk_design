@@ -2,6 +2,10 @@ package algorithms.toutiao;
 
 /**
  * Created by yangyuan on 2020/2/22.
+ * 393. UTF-8 编码验证
+ *
+ *  模拟题
+ *   按照规则流程写
  */
 public class ValidUtf8 {
 

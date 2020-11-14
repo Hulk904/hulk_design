@@ -46,9 +46,9 @@ public class FindMaximumXOR {
                 int bit = (value>>i)&1;
                 int xorBit = bit ^ 1;
                 /*
-                 * 1. 异或位为空，则该位没有可以异或的值，则从原位置继续下一次循环；
+                 * 1. 异或位为空，则该位没有可以异或的值，则从原位置继续下一次循环；(并不会累加相关值)
                  * 2. 异或位不为空，说明该位置可以进行异或操作，则从异或后的位置继续循环，
-                 * 并将 num 对应的异或值之和 sum 相应位置加上 1；
+                 * 并将 num 对应的异或值之和 sum 相应位置加上 1；（跟是0或1没有关系。异或存在就加上对应值）
                  */
                 TrieNode next = cur.path[xorBit];
                 if (next == null) {
@@ -63,6 +63,7 @@ public class FindMaximumXOR {
             return sum;
         }
     }
+
     public int findMaximumXOR(int[] nums) {
         if(nums.length==0){
             return 0;

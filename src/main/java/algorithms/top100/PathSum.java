@@ -10,6 +10,7 @@ import java.util.Queue;
 
 /**
  * Created by yangyuan on 2020/1/17.
+ * 437. 路径总和 III
  * 给定一个二叉树，它的每个结点都存放着一个整数值。
 
  找出路径和等于给定数值的路径总数。
@@ -160,7 +161,7 @@ public class PathSum {
     /**
      *
      */
-    Map<Integer, Integer> map = new HashMap();
+    Map<Integer, Integer> map = new HashMap();//前缀和 -> 出现次数
 
     private int target;
 

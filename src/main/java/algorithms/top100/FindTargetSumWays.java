@@ -3,6 +3,8 @@ package algorithms.top100;
 /**
  * Created by yangyuan on 2020/1/21.
  *
+ * 494. 目标和
+ *
  * 给定一个非负整数数组，a1, a2, ..., an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。
 
  返回可以使最终数组和为目标数 S 的所有添加符号的方法数。
@@ -33,7 +35,7 @@ public class FindTargetSumWays {
             return 0;
         }
         int target = (sum -S)/2;//  写成(sum + S) / 2; 更好理解 。 可能开的空间比较大些
-        int[] dp = new int[target + 1];
+        int[] dp = new int[target + 1];//和为j的所有方案
 
 //        for (int i = 0; i <= target; i++){  //为什么这种遍历方式不行 ？ 跟dp[0] = 1的初始化值有关？？？
 //            for (int j = nums.length - 1; j >= 0; j--){
@@ -43,7 +45,6 @@ public class FindTargetSumWays {
 //
 //            }
 //        }
-        //跟完全背包问题不同的一点是它要求完全装满，所以dp[0]要特殊初始化
         dp[0] = 1;
         for (int num:nums){
             for (int i = target; i >= num; i--){

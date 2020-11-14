@@ -20,6 +20,7 @@ public class RemoveDuplicateLetters {
         for (int i = 0; i < s.length(); i++) last.put(s.charAt(i), i);
         for (int i = 0; i < s.length(); i++){
             if (ins.getOrDefault(s.charAt(i), false)) continue;//already exist
+            //跟栈顶比较 ，如果比栈顶小则把栈顶的删掉
             while (!stack.isEmpty() && stack.peek() > s.charAt(i) && last.getOrDefault(stack.peek(), -1) > i){//后面还有
                 ins.put(stack.pop(), false);//从栈里删除，并标记不存在
             }

@@ -8,6 +8,12 @@ package algorithms.other;
  */
 public class CanMeasureWater {
     public boolean canMeasureWater(int x, int y, int z) {
-        return  false;
+
+        if (z > x + y) return false;
+        return z == 0 || (z % gcd(x,y) == 0);
+    }
+    //求最大公约数模版
+    int gcd (int a, int b){
+        return b > 0 ? gcd (b, a % b) : a;
     }
 }

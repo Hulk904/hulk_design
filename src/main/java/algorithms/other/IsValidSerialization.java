@@ -62,4 +62,32 @@ public class IsValidSerialization {
         return stack.size() == 1 && stack.peek().equals("#");
 
     }
+
+
+    /**
+     * 递归实现
+     */
+
+    int k;
+    String s;
+
+    public boolean isValidSerialization3(String preorder) {
+        k = 0;//遍历时候的指针
+        s = preorder + ",";
+        if (!dfs()) return false;
+        return k == s.length();//不能直接写true
+    }
+
+    boolean dfs(){
+        if (k == s.length()) return false;
+        if (s.charAt(k) == '#') {
+            k+=2;
+            return true;
+        }
+        while (s.charAt(k) != ',') k++;//找根节点
+        k++;//把根节点跳过
+        //根节点遍历完了
+        //递归左子树，递归右子树。。。 不是很好理解啊。。
+        return dfs() && dfs();
+    }
 }

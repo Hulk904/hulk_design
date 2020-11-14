@@ -26,7 +26,10 @@ public class IsAdditiveNumber {
         }
         for (int i = index; i < length; i++){
             long cur = fetchNum(num, index, i);
+            //非法的剪枝  03 之类的
             if (cur < 0) continue;
+            //剪枝 当前数不是前两个数的和
+            //同样不能少了条件 k >= 2 至少三个数的时候才能剪枝呢。。。
             if (k >= 2 && cur != sum){
                 continue;
             }
@@ -38,6 +41,7 @@ public class IsAdditiveNumber {
     }
 
     long fetchNum(String num, int start, int end){
+        //注意不要少了条件 start < end . 可以有单独的0
         if (start < end  && num.charAt(start) == '0') return -1;
         long res = 0;
         for (int i = start; i <= end; i++){

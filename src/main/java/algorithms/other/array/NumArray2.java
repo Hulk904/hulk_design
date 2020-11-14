@@ -29,9 +29,11 @@ public class NumArray2 {
     void add( int x, int v){
         for (int i = x; i <= n; i+= lowbit(i)) tr[i] += v;
     }
+
     public NumArray2(int[] nums) {
         this.nums = nums;
         this.n = nums.length;
+        //下标从1开始
         tr = new int [n + 1];
         for (int i=  1; i <= n; i++){
             tr[i] = nums[i - 1];

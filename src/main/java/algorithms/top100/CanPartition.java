@@ -2,6 +2,9 @@ package algorithms.top100;
 
 /**
  * Created by yangyuan on 2020/1/22.
+ * 416. 分割等和子集
+ *
+ * 给定一个只包含正整数的非空数组。是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
  */
 public class CanPartition {
 
@@ -10,6 +13,7 @@ public class CanPartition {
         System.out.println(canPartition(data));
     }
 
+    //01背包问题
     public static boolean canPartition(int[] nums) {
         int sum = 0;
         for (int num:nums){
@@ -22,11 +26,8 @@ public class CanPartition {
         boolean[] dp = new boolean[target + 1];
 
         dp[0]=true;
-        //下面这个初始化有没有好像都行啊
-        if (nums[0] <= target){
-            dp[nums[0]] = true;
-        }
-        for(int j = 1; j < nums.length; j++){
+        for(int j = 0; j < nums.length; j++){
+            //01背包 从大 到小 枚举体积
             for (int i = target; i >= 0; i--){
                 if (i - nums[j] >= 0) {
                     dp[i] = dp[i] || dp[i - nums[j]];

@@ -31,4 +31,11 @@ public class Rand10 {
     private int rand7(){
         return 0;
     }
+
+    //递归写法
+    public int rand103() {
+        int t = (rand7() - 1)*7 + rand7();
+        if (t > 40) return rand103();
+        return (t - 1)%10 + 1;
+    }
 }

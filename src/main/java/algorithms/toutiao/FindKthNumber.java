@@ -19,12 +19,12 @@ package algorithms.toutiao;
  字典序的排列是 [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]，所以第二小的数字是 10。
 
  */
-public class FindKthNumber {
+public class  FindKthNumber {
 
     public static void main(String[] args) {
         //System.out.println(findKthNumber(681692778, 351251360));
         //System.out.println(findKthNumber2(10000,10000));
-        getCount(1,120);
+        findKthNumber(13, 4);
     }
 
     public static int findKthNumber2(int n, int k){

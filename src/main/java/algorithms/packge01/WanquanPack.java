@@ -10,6 +10,7 @@ package algorithms.packge01;
  */
 public class WanquanPack {
 
+    //CoinChange  零钱兑换就是个完全背包问题
     /* 状态转移方程
     与01背包问题的区别就是内层循环是递增的。。
     for (int i = 1; i <= n; i++)

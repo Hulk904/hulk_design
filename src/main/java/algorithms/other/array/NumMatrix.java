@@ -10,8 +10,9 @@ package algorithms.other.array;
 public class NumMatrix {
 
     int [][] sum;
-    /**二维矩阵前缀和
-     *  前缀和下标一般从0开始避免边界处理
+    /**
+     * 二维矩阵前缀和
+     * 前缀和下标一般从1开始避免边界处理
      */
     public NumMatrix(int[][] matrix) {
         if (matrix.length == 0) return;
@@ -25,6 +26,7 @@ public class NumMatrix {
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
         row1++;col1++;row2++;col2++;
+        //注意这里是包含 row1 这一行和col1这一列的。 注意减去1。。。
         return sum[row2][col2] - sum[row1 - 1][col2] - sum[row2][col1 - 1] + sum[row1 - 1][col1 - 1];
     }
 }

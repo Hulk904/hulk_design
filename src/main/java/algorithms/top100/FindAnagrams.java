@@ -2,9 +2,7 @@ package algorithms.top100;
 
 import com.alibaba.fastjson.JSON;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by yangyuan on 2020/1/27.
@@ -115,6 +113,29 @@ public class FindAnagrams {
                 }
                 left++;
             }
+        }
+        return res;
+    }
+
+    public  List<Integer> findAnagrams2(String s, String p) {
+        Map<Character, Integer> cnt = new HashMap<>();
+        for (char c:p.toCharArray()){
+            cnt.put(c, cnt.getOrDefault(c, 0) + 1);
+        }
+        List<Integer> res = new ArrayList<>();
+        int total = cnt.size();
+        for (int i = 0, j = 0, t = 0; i < s.length(); i++){
+            int times = cnt.getOrDefault(s.charAt(i), 0) - 1;
+            cnt.put(s.charAt(i), times);
+            if (times == 0) {
+                t++;
+            }
+            while (i - j + 1 > p.length()){
+                if (cnt.getOrDefault(s.charAt(j), 0) == 0) t--;
+                cnt.put(s.charAt(j), cnt.getOrDefault(s.charAt(j), 0) + 1);
+                j++;
+            }
+            if (t == total) res.add(j);
         }
         return res;
     }

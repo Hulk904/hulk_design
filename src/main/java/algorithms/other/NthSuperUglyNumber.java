@@ -26,10 +26,10 @@ public class NthSuperUglyNumber {
         int[] ans = new int[n];
         ans[0] = 1;
         for (int i = 1; i < n;){
-            Pair t = heap.poll();
-            if (t.first != ans[i - 1]) ans[i++] = t.first;
+            Pair t = heap.poll();//把丑数那题 找三个数中最小的换成 堆了
+            if (t.first != ans[i - 1]) ans[i++] = t.first;//不一样才存下来，不一样就不用管了
             int idx = t.secoond;
-            int p = t.first/ans[idx];
+            int p = t.first/ans[idx];//因子
             heap.add(new Pair(p*ans[idx + 1], idx + 1));
         }
         return ans[n - 1];
@@ -42,5 +42,31 @@ public class NthSuperUglyNumber {
             this.first = first;
             this.secoond = second;
         }
+    }
+
+
+    /**
+     * 算是动态规划  处理逻辑跟丑数计算是一样的 比较方式
+     * @param n
+     * @param primes
+     * @return
+     */
+    public int nthSuperUglyNumber2(int n, int[] primes) {
+        int ugly[] = new int[n];
+        ugly[0] = 1;
+        int index[] = new int[primes.length];
+        for (int i = 1; i < n ; i++){
+            int min = Integer.MAX_VALUE;
+            for (int j = 0; j < index.length; j++){
+                min = Math.min(min, ugly[index[j]]*primes[j]);
+            }
+            ugly[i] = min;
+            for (int j = 0; j < index.length; j++){
+                if (ugly[index[j]]*primes[j] == min){
+                    index[j]++;
+                }
+            }
+        }
+        return ugly[n - 1];
     }
 }

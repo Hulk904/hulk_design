@@ -30,7 +30,7 @@ public class FindDuplicates {
             int loc = Math.abs(nums[i]) - 1;
             if (nums[loc] < 0){
                 list.add(loc + 1);
-                continue;
+                continue;//加不加都可以，因为 都是两次或者一次
             }
             nums[loc] = -nums[loc];
         }

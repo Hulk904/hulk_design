@@ -35,6 +35,7 @@ public class ReverseKGroup {
 
     /**
      * 翻转 两个节点之间的数据。 思想来源于翻转链表
+     * 不包含tail的翻转，所以返回的是pre 而不是 tailß
      * @param head
      * @param tail
      * @return

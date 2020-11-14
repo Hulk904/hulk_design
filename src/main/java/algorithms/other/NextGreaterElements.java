@@ -14,7 +14,6 @@ import java.util.Stack;
 public class NextGreaterElements {
 
 
-
     public int[] nextGreaterElements(int[] nums) {
         int n = nums.length;
         int[] res = new int[n];

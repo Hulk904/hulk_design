@@ -32,6 +32,9 @@ public class FindRadius {
 
     /**
      * 最近里求最大。。
+     *
+     // 1、找到每个房屋离加热器的最短距离（即找出离房屋最近的加热器）。
+     // 2、在所有距离中选出最大的一个max(res)即为结果。
      * @param houses
      * @param heaters
      * @return
