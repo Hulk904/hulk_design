@@ -105,4 +105,14 @@ public class MergeTrees {
         t1.right = mergeTrees(t1.right, t2.right);
         return t1;
     }
+
+
+    public TreeNode mergeTrees2(TreeNode t1, TreeNode t2) {
+        if (t2 == null) return t1;
+        if (t1 == null) return t2;
+        TreeNode node = new TreeNode(t1.val + t2.val);
+        node.left = mergeTrees2(t1.left, t2.left);
+        node.right = mergeTrees2(t1.right, t2.right);
+        return node;
+    }
 }

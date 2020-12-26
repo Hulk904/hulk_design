@@ -17,6 +17,11 @@ public class FindUnsortedSubarray {
         System.out.println(findUnsortedSubarray(data));
     }
 
+    /**
+     * 单调栈
+     * @param nums
+     * @return
+     */
     public static int findUnsortedSubarray(int[] nums){
         if (nums.length <= 1){
             return 0;
@@ -42,7 +47,7 @@ public class FindUnsortedSubarray {
     public static int findUnsortedSubarray2(int[] nums){
         int left = nums.length;
         int right = 0;
-        int curMaxLeft = nums[nums.length - 1];
+        int curMinLeft = nums[nums.length - 1];
         int curMaxRight = nums[0];
         for (int i = 0; i < nums.length; i++){
             if (curMaxRight > nums[i]){
@@ -50,15 +55,17 @@ public class FindUnsortedSubarray {
             } else {
                 curMaxRight = nums[i];
             }
-            if (curMaxLeft < nums[nums.length - i - 1]){
+            if (curMinLeft < nums[nums.length - i - 1]){
                 left = nums.length - i - 1;
             } else {
-                curMaxLeft = nums[nums.length - i - 1];
+                curMinLeft = nums[nums.length - i - 1];
             }
         }
         return right < left ? 0 : right - left + 1;//初始化right = -1, left = 0 就可以直接返回 right-left + 1 了
 
     }
+
+    //还有一种方法就是 把数据排序， 然后和原数组对比， 左边第一个不相同的，和右边开始第一个不相同的
 
     /**
      * 错误答案

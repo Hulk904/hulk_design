@@ -90,4 +90,17 @@ public class LeastInterval {
         return total;
     }
 
+    public int leastInterval5(char[] tasks, int n) {
+        int[] s = new int[26];
+        for (char c:tasks){
+            s[c - 'A']++;
+        }
+        Arrays.sort(s);
+        int max = s[25], cnt = 1;
+        for (int i = 24; i >= 0; i--){
+            if (s[i] == max) cnt++;
+        }
+        return Math.max(tasks.length, (max - 1)*(n + 1) + cnt);
+    }
+
 }

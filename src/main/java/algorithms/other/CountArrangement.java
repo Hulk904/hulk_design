@@ -16,7 +16,7 @@ public class CountArrangement {
     public static void main(String[] args) {
         System.out.println(countArrangement(2));
     }
-
+    //状态压缩dp
     public static int countArrangement(int N) {
         int[] dp = new int[(1 << N )];
         dp[0] = 1;

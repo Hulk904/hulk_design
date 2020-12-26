@@ -28,12 +28,7 @@ public class CoinChange {
         int dp[] = new int[amount + 1];
         //这里需要手动初始化 选第一个商品时的情况
         dp[0] = 1;
-        for (int i = coins[0]; i <= amount; i += coins[0]) {
-            dp[i] = 1;
-        }
-
-        for (int i = 1; i < coins.length; i++){
-            //for (int j = 0; j <= amount && j >= coins[i]; j++){
+        for (int i = 0; i < coins.length; i++){
             for (int j = coins[i]; j <= amount; j++){
                 dp[j] += dp[j - coins[i]];
             }

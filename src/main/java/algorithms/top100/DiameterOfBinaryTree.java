@@ -38,7 +38,7 @@ public class DiameterOfBinaryTree {
     }
 
     /**
-     * 返回的是左或右子树最长的那个
+     * 返回的是左或右子树最长的那个(距离)
      * 而最终的结果是通过成员变量 得到
      * @param root
      * @return

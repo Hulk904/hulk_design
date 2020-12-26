@@ -50,4 +50,38 @@ public class FindMode {
         dfs(root.right);
     }
 
+
+    int max1 = 0;
+
+    List<Integer> res2 = new ArrayList();
+
+    public int[] findModeError(TreeNode root) {
+        dfs(root, 0);
+        int[] n = new int[res.size()];
+        for (int i = 0; i < res.size(); i++){
+            n[i] = res.get(i);
+        }
+        return n;
+    }
+
+    //这里的问题是  pre和cur 都不是想要的值。 得弄成成员变量
+    Integer dfs(TreeNode root, int cur){
+        if (root == null) return null;
+        Integer pre = dfs(root.left, cur);
+        if (pre != null && pre == root.val){
+            cur++;
+        } else {
+            cur = 1;
+        }
+        if (cur > max1){
+            res2 = new ArrayList();
+            max1 = cur;
+            res2.add(root.val);
+        } else if (cur == max1){
+            res2.add(root.val);
+        }
+        dfs(root.right, cur);
+        return root.val;
+    }
+
 }

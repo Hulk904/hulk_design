@@ -25,7 +25,7 @@ public class FindMaximizedCapital {
             q[i] = new int[]{Capital[i], Profits[i]};
         }
         Arrays.sort(q, (a,b) -> a[0] - b[0]);//根据成本由小到大排序
-        Queue<Integer> h = new PriorityQueue<>((a,b) -> b - a);
+        Queue<Integer> h = new PriorityQueue<>((a,b) -> b - a);//大顶堆  （优先价值最大的）
         int i = 0;
         while (k-- > 0){
             while (i < n && q[i][0] <= W) {//可以开启的项目

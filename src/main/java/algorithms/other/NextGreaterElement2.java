@@ -12,6 +12,11 @@ import java.util.List;
  */
 public class NextGreaterElement2 {
 
+    /**
+     * 同 31 题
+     * @param n
+     * @return
+     */
     public int nextGreaterElement(int n) {
         List<Integer> list = new ArrayList();
         while (n > 0){

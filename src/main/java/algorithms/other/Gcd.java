@@ -10,7 +10,7 @@ package algorithms.other;
 public class Gcd {
 
     public static void main(String[] args) {
-        System.out.println(gcd(4,8));
+        System.out.println(gcd(-4,8));
     }
 
     public static int gcd(int x, int y) {
