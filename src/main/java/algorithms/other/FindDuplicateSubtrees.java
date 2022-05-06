@@ -91,4 +91,39 @@ public class FindDuplicateSubtrees {
         }
         return t;
     }
+
+
+    /**
+     * 把子树映射为一个三元组
+     * 这样使用的空间会小些，不像上面存放的是整个树序列化后的， 空间会比较大
+     */
+
+    Map<String, Integer> ids = new HashMap();//三元组 和id 映射
+
+    int cnt = 0; //当前树id
+
+    Map<Integer, Integer> hash = new HashMap();//每个id出现多少次
+
+    List<TreeNode> res = new ArrayList();
+
+    public List<TreeNode> findDuplicateSubtrees3(TreeNode root) {
+        dfs3(root);
+        return res;
+    }
+
+    private int dfs3(TreeNode root){//返回id
+        if (root == null) return 0;
+        int left = dfs3(root.left);
+        int right = dfs3(root.right);
+        String key = root.val + "," + left + "," + right;
+        if (ids.get(key) == null) {//当前key 未出现过
+            ids.put(key, ++cnt);//分配一个唯一值
+        }
+        int id = ids.get(key);
+        hash.put(id, hash.getOrDefault(id, 0) + 1);
+        if (hash.get(id) == 2){
+            res.add(root);
+        }
+        return id;
+    }
 }

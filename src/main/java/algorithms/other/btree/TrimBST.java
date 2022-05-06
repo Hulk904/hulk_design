@@ -15,6 +15,7 @@ public class TrimBST {
     /**
      * 递归实现需要理解。。。
      * 首先得是搜索树才能这样处理
+     * 不可能修剪后 左右子树同时存在 ， 因为它是一个搜索树
      * @param root
      * @param L
      * @param R

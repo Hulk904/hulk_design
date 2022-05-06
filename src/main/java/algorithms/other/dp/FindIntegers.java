@@ -10,7 +10,7 @@ public class FindIntegers {
 
     //数位dp 经典 （通常是  小于等于 某个数 满足某个条件数的问题）
     //1、预处理
-    //2、按位做
+    //2、按位做 （分类讨论）
     public int findIntegers(int num) {
         String t = Integer.toBinaryString(num);
         int[][] dp = new int[t.length() + 1][2];//最高位0 一共i位， 和最高位为1 一共i位  合法总数
@@ -25,10 +25,15 @@ public class FindIntegers {
             int x = t.charAt(i - 1) - '0';
             if (x > 0){
                 res += dp[t.length() - i + 1][0];//注意取值
-                if (last > 0) return res;
+                if (last > 0) return res;//出现了两个连续的1 ，就没有必要再继续做了
             }
             last = x;
         }
-        return res + 1;
+        return res + 1;//加上n本身
+    }
+
+    public static void main(String[] args) {
+        FindIntegers findIntegers = new FindIntegers();
+        System.out.println(findIntegers.findIntegers(7));
     }
 }

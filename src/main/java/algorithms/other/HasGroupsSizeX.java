@@ -1,5 +1,8 @@
 package algorithms.other;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by yangyuan on 2020/4/26.
  * 914. 卡牌分组
@@ -49,5 +52,16 @@ public class HasGroupsSizeX {
      */
     private int gcd(int x, int y){
         return x == 0 ? y : gcd(y%x, x);
+    }
+
+    public boolean hasGroupsSizeXShort(int[] deck) {
+        Map<Integer, Integer> map = new HashMap();
+        for (int x:deck) map.put(x, map.getOrDefault(x, 0) + 1);
+        int d = 0;
+        for (Map.Entry<Integer, Integer> entry:map.entrySet()) d = gcd2(d, entry.getValue());
+        return d >= 2;
+    }
+    int gcd2(int a, int b){
+        return b == 0 ? a : gcd2(b, a%b);
     }
 }

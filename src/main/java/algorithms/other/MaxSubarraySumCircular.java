@@ -9,6 +9,7 @@ import java.util.Deque;
  *
  * 单调队列的问题
  * 这个跟 数组的最大子数组和思路还是相差挺大的，如果按照数组的思维 估计会陷入死胡同
+ * 滑动窗口求最小值--单调队列
  */
 public class MaxSubarraySumCircular {
 

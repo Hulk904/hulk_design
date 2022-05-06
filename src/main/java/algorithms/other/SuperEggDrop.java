@@ -44,5 +44,15 @@ public class SuperEggDrop {
 
     }
 
+    public int superEggDrop2(int K, int N) {
+        int[][] dp = new int[10010][110];
+        for(int i = 1; i <= N; i++){
+            for (int j = 1; j <= K; j++){
+                dp[i][j] = dp[i - 1][j - 1] + 1 + dp[i - 1][j];
+                if (dp[i][K] >= N) return i;
+            }
+        }
+        return -1;
+    }
 
 }

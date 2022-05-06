@@ -45,5 +45,14 @@ public class IsUnivalTree {
         return left_correct && right_correct;
     }
 
+    public boolean isUnivalTree3(TreeNode root) {
+        return dfs(root, root.val);
+    }
+
+    boolean dfs(TreeNode root, int val){
+        if (root == null) return true;
+        if (root.val != val) return false;
+        return dfs(root.left, val) && dfs(root.right, val);
+    }
 
 }

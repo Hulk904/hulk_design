@@ -6,11 +6,15 @@ package algorithms.other.array;
  *给定一个整数数组  nums，求出数组从索引 i 到 j  (i ≤ j) 范围内元素的总和，包含 i,  j 两点。
 
  *update(i, val) 函数可以通过将下标为 i 的数值更新为 val，从而对数列进行修改。
+ *
+ *
+ * 修改操作x影响到的节点  p = x + lowbit(x)  最多影响log(x)个节点
+ * 查询操作
 
  */
 public class NumArray2 {
 
-    // 树状树组 支持两个操作  求前缀和 ， 给某个位置加上一个数
+    // 树状数组 支持两个操作  求前缀和 ， 给某个位置加上一个数(修改某个数) 这也是判断一个题能不能用树状数组做的两个判断条件
     int n;
     int[] tr;
     int[] nums;

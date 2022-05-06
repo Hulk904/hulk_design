@@ -59,7 +59,34 @@ public class MaximumSwap {
                 return i;
             }
         }
-        return -1;
+        return -1;//没找到
+    }
+
+
+    //从左往右扫描， 找到一个升序点
+    //然后 在右边找到最后最大的个数 x
+    //左边找到第一个 比 x大的数 进行交换
+    public int maximumSwap2(int num) {
+        char[] s = ("" + num).toCharArray();;
+        for (int i = 0; i + 1 < s.length; i++){
+            if (s[i] < s[i + 1]){
+                int k = i + 1;
+                for (int j = k; j < s.length; j++){
+                    if (s[j] >= s[k]){
+                        k = j;//找到最后一个
+                    }
+                }
+                for (int j = 0; ; j++){
+                    if (s[j] < s[k]){
+                        char temp = s[j];
+                        s[j] = s[k];
+                        s[k] = temp;
+                        return Integer.parseInt(new String(s));
+                    }
+                }
+            }
+        }
+        return num;
     }
 
 

@@ -1,5 +1,8 @@
 package algorithms.toutiao;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by yangyuan on 2020/2/19.
  *718
@@ -23,7 +26,8 @@ public class FindLength {
         int[] b = {3,2,1,4,7};
         System.out.println(findLength(a,b));
     }
-
+    //动态规划  是 n2的复杂度  处理子序列 不错 ，这里可以用二分优化
+    //
     /**
      * 逆序  leetcode执行快些
      * @param A
@@ -66,5 +70,46 @@ public class FindLength {
             }
         }
         return result;
+    }
+
+
+    /**
+     * 字符串hash 实现 nlog(n)
+     */
+    int P = 131;
+    int m, n;
+    long[] ha, hb, p;
+    long get(long[] h, int l, int r){
+        return h[r] - h[l - 1]*p[r - l  + 1];
+    }
+
+    boolean check(int mid){
+        Set<Long> set = new HashSet();
+        for (int i = mid; i <= m; i++) set.add(get(ha, i - mid + 1, i));
+        for (int i = mid; i <= n; i++){
+            if (set.contains(get(hb, i - mid + 1, i))){
+                return true;
+            }
+        }
+        return false;
+    }
+    //字符串hash
+    public int findLength3(int[] A, int[] B) {
+        m = A.length;
+        n = B.length;
+        ha = new long[m + 1];
+        hb = new long[n + 1];
+        p = new long [m + 1];
+        for (int i = 1; i <= m; i++) ha[i] = ha[i - 1]*P + A[i - 1];
+        for (int i = 1; i <= n; i++) hb[i] = hb[i - 1]*P + B[i - 1];
+        p[0] = 1;
+        for (int i = 1;i <= m; i ++) p[i] = p[i - 1]*P;
+        int l = 0, r = m;
+        while (l < r){
+            int mid = l + r + 1 >> 1;
+            if (check(mid)) l = mid;
+            else r = mid  -1;
+        }
+        return r;
     }
 }

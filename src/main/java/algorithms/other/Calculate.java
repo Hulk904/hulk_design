@@ -46,6 +46,10 @@ public class Calculate {
                 //栈中优先级比当前的高  计算栈顶 .
                 //因为只有 + -  所以一定成立
                 //需要排除 （ 的可能性
+                //题目改了之后的补充 地方
+                if (i == 0 || s.charAt(i - 1) == '(' || s.charAt(i-1) == '+' || s.charAt(i - 1) == '-'){// 判断 + 和 - 是不是一元运算符
+                    num.push(0);
+                }
                 while (op.size() > 0 && op.peek() != '(') eval(num, op);
                 op.push(c);
             }

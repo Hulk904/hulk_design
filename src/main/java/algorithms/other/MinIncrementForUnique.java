@@ -1,5 +1,7 @@
 package algorithms.other;
 
+import java.util.Arrays;
+
 /**
  * Created by yangyuan on 2020/4/26.
  * 945. 使数组唯一的最小增量
@@ -59,4 +61,36 @@ public class MinIncrementForUnique {
         return res;
     }
 
+    public int minIncrementForUnique3(int[] A) {
+        Arrays.sort(A);
+        int res = 0, last = -1;
+        for (int x:A){
+            int y = Math.max(last + 1, x);
+            res += y - x;
+            last = y;
+        }
+        return res;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

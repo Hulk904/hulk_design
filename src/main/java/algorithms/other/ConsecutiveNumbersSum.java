@@ -16,10 +16,13 @@ package algorithms.other;
  * 2、2n > b(b-1)
  */
 public class ConsecutiveNumbersSum {
-
+    //a开始 ，项数是b的和
+    //2*a = 2N/b  - (b - 1)
+    //然后判断上面的情况  比如 2N/b 可以整除，  右边值为偶数
+    //枚举b
     public int consecutiveNumbersSum(int N) {
         int result = 0;
-        for (int b = 1; b*(b-1) < 2*N; b++){
+        for (int b = 1; b*b <= 2*N; b++){
             if (2*N%b == 0 && ((2*N/b - (b-1))&1)==0){
                 result++;
             }

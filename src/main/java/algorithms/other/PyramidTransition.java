@@ -48,7 +48,7 @@ public class PyramidTransition {
      * @return
      */
     private boolean dfs(String last, String now){
-        if (last.length() == 1) return true;
+        if (last.length() == 1) return true;//last长度为1时， 而不是now长度为1
         //往上走一层  缩短一个字符说明可以往上走一层了。
         if (now.length() + 1 == last.length()) return dfs(now, "");
         //需要合并的两个字符

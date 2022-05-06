@@ -70,4 +70,26 @@ public class CountSubstring {
         }
         return count;
     }
+
+    /**
+     * 跟上面差不多
+     * @param s
+     * @return
+     */
+    public int countSubstrings2(String s) {
+        int res = 0;
+        for (int i = 0; i < s.length(); i++){
+            //枚举长度为奇数情况
+            for (int j = i, k = i; j >= 0 && k < s.length(); j--, k++){//i为中心点
+                if (s.charAt(j) != s.charAt(k)) break;
+                res++;
+            }
+            //枚举偶数情况
+            for (int j = i, k = i + 1; j >= 0 && k < s.length(); j--, k++){//i为中心点左边那个
+                if (s.charAt(j) != s.charAt(k)) break;;
+                res++;
+            }
+        }
+        return res;
+    }
 }
